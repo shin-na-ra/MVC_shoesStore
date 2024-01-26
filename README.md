@@ -2,6 +2,8 @@
 MVC Pattern 신발가게 
 
  팀원 및 역할
+
+ 신나라 : Controller 관리, bootstrap
  
 조성진 : 제품 조회 페이지
 
