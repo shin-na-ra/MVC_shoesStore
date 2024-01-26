@@ -54,7 +54,8 @@ public class Controller extends HttpServlet {
 		String com = uri.substring(conPath.length());
 		
 		switch(com) {
-			case "":
+			case "list.do":
+				viewPage = "index.jsp";
 				break;
 			
 			default :
