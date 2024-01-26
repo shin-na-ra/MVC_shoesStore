@@ -56,10 +56,27 @@ public class Controller extends HttpServlet {
 		System.out.println(com);
 		
 		switch(com) {
-			//로그인페이지	
+
+			// 로그인화면 조회하기 (login.jsp로 이동)
 			case "/list.do":
 				viewPage = "login.jsp";
 				break;
+			
+			// 로그인 성공 시 처리 (product.jsp로 이동)
+			case("/login.do") :
+				command = new SLoginCommand();
+				command.execute(request, response);
+				viewPage = "product.jsp";
+				break;
+				
+				
+			// 제품조회 페이지
+				
+			
+			// 회원가입 폼 조회페이지
+			
+				
+			// 회원가입 등록했을 때 
 			
 			default :
 				break;
