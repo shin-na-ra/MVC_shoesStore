@@ -7,6 +7,13 @@
 		<title>Sign-up(회원가입)</title>
 	</head>
 	<body>
-		1234
+		<form action="" name="membership" method="post">
+			<table>
+				<tr>
+					<td>이름 : </td>
+					<td><input type="text" name="username"></td>
+				</tr>
+			</table>
+		</form>
 	</body>
 </html>
