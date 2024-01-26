@@ -7,6 +7,6 @@
 		<title>Sign-up(회원가입)</title>
 	</head>
 	<body>
-		
+		1234
 	</body>
 </html>
