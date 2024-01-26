@@ -56,8 +56,9 @@ public class Controller extends HttpServlet {
 		System.out.println(com);
 		
 		switch(com) {
+			//로그인페이지	
 			case "/list.do":
-				viewPage = "aaa.jsp";
+				viewPage = "login.jsp";
 				break;
 			
 			default :
