@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.shoes.command.SCommand;
+import com.shoes.command.SListCommand;
+import com.shoes.command.SPayCommand;
+import com.shoes.dao.SListDao;
 
 /**
  * Servlet implementation class Controller
@@ -53,15 +56,30 @@ public class Controller extends HttpServlet {
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
 		
+		System.out.println(com);
+		
 		switch(com) {
-			case "":
+			//로그인페이지	
+			case "/list.do":
+				viewPage = "login.jsp";
 				break;
-			
+				
+			case "/shoesList.do" :
+				command = new SListCommand();
+				command.execute(request, response);
+				
+				viewPage = "product.jsp";
+				break;
+				
+			case "/pay_view.do" :
+				command = new SPayCommand();
+				command.execute(request, response);
+				
+				viewPage = "pay.jsp";
 			default :
 				break;
 			
 		}
-		
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
 		rd.forward(request, response);	

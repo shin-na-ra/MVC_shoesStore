@@ -8,20 +8,24 @@ public class SListDto {
 	String brand;
 	String name;
 	String color;
-	int price;
+	String price;
 	int size;
-	byte[] image;
 	int qty;
+	String image;
 	
 	public SListDto() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public SListDto(String brand, String name, int price, byte[] image) {
+	public SListDto(int code, String brand, String name, String color, String price, int size, int qty, String image) {
 		super();
+		this.code = code;
 		this.brand = brand;
 		this.name = name;
+		this.color = color;
 		this.price = price;
+		this.size = size;
+		this.qty = qty;
 		this.image = image;
 	}
 
@@ -57,11 +61,11 @@ public class SListDto {
 		this.color = color;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
@@ -73,11 +77,11 @@ public class SListDto {
 		this.size = size;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
