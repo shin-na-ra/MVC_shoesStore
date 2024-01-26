@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.shoes.command.SCommand;
+import com.shoes.command.SLoginCommand;
 
 /**
  * Servlet implementation class Controller
@@ -63,11 +64,17 @@ public class Controller extends HttpServlet {
 				break;
 			
 			// 로그인 성공 시 처리 (product.jsp로 이동)
-			case("/login.do") :
-				command = new SLoginCommand();
-				command.execute(request, response);
-				viewPage = "product.jsp";
-				break;
+			case "/login.do":
+	            command = new SLoginCommand();
+	            command.execute(request, response);
+	            
+	            // 로그인 성공 여부 확인
+	            boolean loginSuccess = (boolean) request.getAttribute("loginSuccess");
+	            
+	            // 로그인 성공 시 product.jsp로 이동
+	            // 실패 시 다시 login.jsp로 이동
+	            viewPage = loginSuccess ? "product.jsp" : "login.jsp";
+	            break;
 				
 				
 			// 제품조회 페이지
