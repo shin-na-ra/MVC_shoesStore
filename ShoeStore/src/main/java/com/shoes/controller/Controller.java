@@ -53,16 +53,17 @@ public class Controller extends HttpServlet {
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
 		
+		System.out.println(com);
+		
 		switch(com) {
-			case "list.do":
-				viewPage = "index.jsp";
+			case "/list.do":
+				viewPage = "aaa.jsp";
 				break;
 			
 			default :
 				break;
 			
 		}
-		
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
 		rd.forward(request, response);	
