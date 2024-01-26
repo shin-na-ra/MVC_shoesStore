@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -32,8 +33,6 @@
         }
       }
     </style>
-
-    
   </head>
   <body>
     
@@ -57,6 +56,7 @@
     </div>
   </div>
   <div class="navbar navbar-dark bg-dark shadow-sm">
+<<<<<<< HEAD
     <div class="container">
       <a href="#" class="navbar-brand d-flex align-items-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
@@ -238,6 +238,86 @@
     </div>
   </div>
 
+	  <div class="container d-flex justify-content-between">
+	    <a href="#" class="navbar-brand">
+	      <strong>E Shoe</strong>
+	    </a>
+	    <div class="input-group" style="width: 22%; text-align: left;">
+		  <input id="searchInput" class="form-control" type="search" placeholder="Search" aria-label="Search" style="font-size: 14px;">
+		  <!-- 검색을 클릭하면 밑에 script로 이동 -->
+		  <button onclick="searchShoes()" class="btn btn-outline-success" style="background-color: #000000; border-color: #000000; color: #FFFFFF; font-size: 15px">검색</button>
+		</div>
+  </div>
+</div>
+</header>
+
+
+<!-- Import the Google Translate API -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+	function searchShoes() {
+	  // Get the search input value
+	  var searchInput = document.getElementById('searchInput').value.toLowerCase();
+	
+	  // Loop through the card elements and show/hide based on the search input
+	  var cards = document.getElementsByClassName('card');
+	  for (var i = 0; i < cards.length; i++) {
+	    var cardText = cards[i].innerText.toLowerCase();
+	    cards[i].style.display = cardText.includes(searchInput) ? 'block' : 'none';
+	  }
+	}
+
+  // Function to handle translation using Google Translate API
+  function googleTranslateElementInit(searchInput, callback) {
+    new google.translate.TranslateElement({pageLanguage: 'ko', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+    // Wait for the translation to complete
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.addedNodes && mutation.addedNodes.length > 0 && mutation.addedNodes[0].nodeType == 1 && mutation.addedNodes[0].className == 'goog-te-menu-value') {
+          // Translation completed, get the translated text
+          var translatedText = document.querySelector('.goog-te-menu-value span').innerText;
+          callback(translatedText);
+        }
+      });
+    });
+    observer.observe(document.body, {childList: true, subtree: true});
+  }
+</script>
+
+<main>
+	  <section class="py-5 text-center container">
+	    <div class="row py-lg-5">
+	      <div class="col-lg-6 col-md-8 mx-auto">
+	        <h1 class="fw-light" style="font-weight=bold; font-size=50px">E Shoe</h1>
+	      </div>
+	    </div>
+	  </section>
+	  
+	<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-3">
+      <c:forEach items="${shoesList}" var="dto">
+        <div class="col">
+          <a href="pay_view.do" style="text-decoration: none;">
+            <div class="card shadow-sm">
+              <svg class="bd-placeholder-img card-img-top" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <img src="${dto.image}" alt="Shoe Image">
+                <text x="10%" y="10%" fill="#eceeef" dy=".3em" align="center">${dto.brand}</text>
+              </svg>
+              <div class="card-body">
+                <p class="card-text" align="center">${dto.name}</p>
+                <p class="card-text" align="center">₩ ${dto.price}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </c:forEach>
+    </div>
+  </div>
+</div>
 </main>
 
 <footer class="text-muted py-5">

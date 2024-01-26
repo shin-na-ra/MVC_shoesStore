@@ -16,6 +16,7 @@ public class SListCommand implements SCommand {
 		List<SListDto> dtos = dao.shoesList();
 		
 		reqeust.setAttribute("shoesList", dtos);
+		
 	}
 	
 }

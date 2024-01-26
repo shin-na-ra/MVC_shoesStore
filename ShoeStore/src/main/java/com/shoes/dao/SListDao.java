@@ -38,18 +38,33 @@ public class SListDao {
 		try {
 			con = dataSource.getConnection();
 			
-			String query = "select brand, name, price, image from product";
+			String query = "SELECT "
+					+ "  MAX(code) as code, "
+					+ "  name, "
+					+ "  MAX(brand) as brand, "
+					+ "  MAX(color) as color, "
+					+ "  MAX(price) as price, "
+					+ "  MAX(size) as size, "
+					+ "  MAX(qty) as qty, "
+					+ "  MAX(image) as image "
+					+ "FROM product "
+					+ "GROUP BY name";
 			
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
+				int code = rs.getInt("code");
 				String brand = rs.getString("brand");
 				String name = rs.getString("name");
-				int price = rs.getInt("price");
-				byte[] image = rs.getBytes("image");
+				String color = rs.getString("color");
+				String price = rs.getString("price");
+				int size = rs.getInt("size");
+				int qty = rs.getInt("qty");
+				String image = rs.getString("image");
 				
-				SListDto dto = new SListDto(brand, name, price, image);
+				SListDto dto = new SListDto(code, brand, name, color, price, size, qty, image);
+				
 				
 				dtos.add(dto);
 			}
@@ -70,4 +85,6 @@ public class SListDao {
 		
 		return dtos;
 	}
+	
+	
 }

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import com.shoes.command.SCommand;
 import com.shoes.command.SLoginCommand;
+import com.shoes.command.SListCommand;
+import com.shoes.command.SPayCommand;
 
 /**
  * Servlet implementation class Controller
@@ -75,16 +77,20 @@ public class Controller extends HttpServlet {
 	            // 실패 시 다시 login.jsp로 이동
 	            viewPage = loginSuccess ? "product.jsp" : "login.jsp";
 	            break;
+	            
+			case "/shoesList.do" :
+				command = new SListCommand();
+				command.execute(request, response);
 				
+				viewPage = "product.jsp";
+				break;
 				
-			// 제품조회 페이지
+			case "/pay_view.do" :
+				command = new SPayCommand();
+				command.execute(request, response);
 				
-			
-			// 회원가입 폼 조회페이지
-			
+				viewPage = "pay.jsp";   
 				
-			// 회원가입 등록했을 때 
-			
 			default :
 				break;
 			
