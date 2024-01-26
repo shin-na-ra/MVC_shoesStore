@@ -15,7 +15,7 @@ public class LoginDao {
     public LoginDao() {
         try {
             Context context = new InitialContext();
-            dataSource = (DataSource) context.lookup("java:comp/env/jdbc/mydb");
+            dataSource = (DataSource) context.lookup("java:comp/env/jdbc/semi2jo");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -28,7 +28,12 @@ public class LoginDao {
 
         try {
         	connection = dataSource.getConnection();
-            String query = "select * from customer where id=? and password=?";
+        	
+        	System.out.println(connection);
+        	
+            String query = "select * from customer where id=? and pw=?";
+            
+            System.out.println(query);
             
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, id);

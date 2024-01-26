@@ -18,6 +18,11 @@ public class SLoginCommand implements SCommand {
 		LoginDao dao = new LoginDao();
 		boolean loginSuccess = dao.validateUser(id, pw);
 		
+		System.out.println(loginSuccess + "성공 데이터");
+		
+        // 로그인 성공 여부를 request에 저장
+        reqeust.setAttribute("loginSuccess", loginSuccess);
+		
         // 로그인 성공 시 알람창을 표시
 		if (loginSuccess) {
             try {

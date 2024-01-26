@@ -38,16 +38,16 @@
   <body class="text-center">
     
 <main class="form-signin">
-  <form>
+  <form action="login.do">
     <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">신발가게</h1>
 
     <div class="form-floating">
-      <input type="email" name="id" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <input type="text" name="id" class="form-control" id="floatingInput" placeholder="아이디">
       <label for="floatingInput">아이디</label>
     </div>
     <div class="form-floating">
-      <input type="password" name="pw"  class="form-control" id="floatingPassword" placeholder="Password">
+      <input type="password" name="pw"  class="form-control" id="floatingPassword" placeholder="비밀번호">
       <label for="floatingPassword">비밀번호</label>
     </div>
 
@@ -56,7 +56,7 @@
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit"><a href="login.do">Sign in</a></button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2024</p>
   </form>
 </main>
