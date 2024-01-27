@@ -1,4 +1,4 @@
-package com.shoes.dto;
+package com.javalec.dto;
 
 import java.io.FileInputStream;
 
