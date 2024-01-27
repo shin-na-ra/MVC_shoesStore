@@ -1,4 +1,4 @@
-package com.shoes.dao;
+package com.javalec.dao;
 
 public class LoginDao {
 

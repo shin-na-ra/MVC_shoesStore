@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>E SHOE</title>
+    <title>${name}</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
 
@@ -60,20 +60,9 @@
 	    <a href="#" class="navbar-brand">
 	      <strong>E Shoe</strong>
 	    </a>
-	    <div class="input-group" style="width: 22%; text-align: left;">
-		  <input id="searchInput" class="form-control" type="search" placeholder="Search" aria-label="Search" style="font-size: 14px;">
-		  <!-- 검색을 클릭하면 밑에 script로 이동 -->
-		  <button onclick="searchShoes()" class="btn btn-outline-success" style="background-color: #000000; border-color: #000000; color: #FFFFFF; font-size: 15px">검색</button>
-		</div>
   </div>
 </div>
 </header>
-
-<script>
-	function searchShoes() {
-	}
-</script>
-
 <main>
 	  <!-- <section class="py-5 text-center container" style="height: 180px;">
 	    <div class="row py-lg-3">
@@ -82,13 +71,14 @@
 	      </div>
 	    </div>
 	  </section> -->
-	  
+	 
+	 //@@@@@@@@@@@@@@@@@@@@@@ 사진 수정 먼
 	<div class="album py-5 bg-light">
 	  <div class="container">
-	    <div class="row row-cols-1 row-cols-md-3 g-4" >
+	    <div class="row row-cols-1 row-cols-md-1 g-4" >
 	      <c:forEach items="${shoesList}" var="dto">
 	        <div class="col">
-	          <a href="pay_view.do?code=${dto.code}" style="text-decoration: none;">
+	          <a href="pay_view.do" style="text-decoration: none;">
 	            <div class="card shadow-sm">
 	            
 		            <%-- <svg class="bd-placeholder-img card-img-top" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
@@ -114,6 +104,8 @@
 	  </div>
 	</div>
 </main>
+
+	 //@@@@@@@@@@@@@@@@@@@@@@ 사진 수정 먼
 
 <footer class="text-muted py-5">
   <div class="container">
