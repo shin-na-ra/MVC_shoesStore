@@ -1,4 +1,4 @@
-package com.shoes.dao;
+package com.javalec.dao;
 
 import java.io.FileInputStream;
 import java.sql.Connection;
@@ -11,7 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.shoes.dto.AdminDto;
+import com.javalec.dto.AdminDto;
 
 public class AdminDao {
 	

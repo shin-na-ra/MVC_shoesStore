@@ -1,11 +1,11 @@
-package com.shoes.command;
+package com.javalec.command;
 
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.shoes.dao.LoginDao;
+import com.javalec.dao.LoginDao;
 
 public class SLoginCommand implements SCommand {
 

@@ -1,4 +1,4 @@
-package com.shoes.controller;
+package com.javalec.controller;
 
 import java.io.IOException;
 
@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.shoes.command.SCommand;
-import com.shoes.command.SLoginCommand;
-import com.shoes.command.SListCommand;
-import com.shoes.command.SPayCommand;
+import com.javalec.command.SCommand;
+import com.javalec.command.SLoginCommand;
+import com.javalec.command.SListCommand;
+import com.javalec.command.SPayCommand;
 
 /**
  * Servlet implementation class Controller
@@ -58,6 +58,7 @@ public class Controller extends HttpServlet {
 		
 		System.out.println(com);
 		
+		
 		switch(com) {
 
 			// 로그인화면 조회하기 (login.jsp로 이동)
@@ -86,11 +87,19 @@ public class Controller extends HttpServlet {
 				break;
 				
 			case "/pay_view.do" :
+				// session을 통해 클릭한 신발의 code key를 보내기
+				String code = request.getParameter("code");
+				session.setAttribute("code", code);
+				
 				command = new SPayCommand();
+				command.execute(request, response);
+				// test용
+				command = new SListCommand();
 				command.execute(request, response);
 				
 				viewPage = "pay.jsp";   
 				
+				viewPage = "purchase.jsp";
 			default :
 				break;
 			
