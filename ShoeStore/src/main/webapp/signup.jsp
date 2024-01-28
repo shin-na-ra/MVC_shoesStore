@@ -10,19 +10,23 @@
 </head>
 <body>
 	<main class="flex justify-center items-center w-screen p-4 w-screen min-h-screen bg-gradient-to-tr from-[rgb(247,202,201)] to-[#92a8d1]">
-		<form action="" method="post" name="membership"
+		<form action="./signUp.do" method="post" name="membership"
 			<%-- sm 스몰, md가 medium, lg가 라지, xl 엑스라지 --%>
-				class="grid grid-cols-3 p-4 gap-x-2 gap-y-8 w-[80vw] max-w-[28rem] border rounded-md shadow-lg bg-slate-50 p-8 bg-opacity-50">
+				class="grid grid-cols-3 p-4 gap-x-2 gap-y-8 w-[80vw] max-w-[28rem] border rounded-md shadow-lg bg-slate-50 p-8 bg-opacity-50"
+		>
 			<header class="col-span-3 text-center">
 				<h1 class="text-xl font-black select-none">Sign Up!</h1>
 			</header>
 			<p>아이디*</p>
 			<fieldset class="flex flex-col col-span-2">
-				<input type="text" id="userid" name="userid"
+				<input type="text" id="userId" name="userId"
 					class="peer w-full min-w-0 border border-black rounded-md px-2 text-left invalid:border-red-600 invalid:outline-red-800 duration-150 active:scale-[0.98]"
-					onblur="applyValidation('userid')"> <label
-					for="userid" class="text-red-600 hidden peer-invalid:block text-sm">
-					아이디는 영문 대소문자, 숫자를 조합하여 3글자 이상으로 입력하십시오. </label>
+					onblur="applyValidation(this.id)"
+				>
+				<label
+					for="userId" class="text-red-600 hidden peer-invalid:block text-sm">
+					아이디는 영문 대소문자, 숫자를 조합하여 3글자 이상으로 입력하십시오.
+				</label>
 			</fieldset>
 			<p>비밀번호*</p>
 			<fieldset class="flex flex-col col-span-2">
@@ -34,7 +38,7 @@
 			</fieldset>
 			<p>성명*</p>
 			<fieldset class="flex flex-col col-span-2">
-				<input type="text" id="fullName" name="full_name"
+				<input type="text" id="fullName" name="fullName"
 					class="peer w-full min-w-0 border border-black rounded-md px-2 text-left invalid:text-slate-400 invalid:border-red-600 invalid:outline-red-800 duration-150 active:scale-[0.98]"
 					onblur="applyValidation(this.id)"> <label
 					for="fullName" class="text-red-600 hidden peer-invalid:block text-sm">
@@ -88,7 +92,7 @@
 			</div>
 			<p>생년월일</p>
 			<fieldset class="flex flex-col col-span-2">
-				<input type="date" id="birthdate" name="birthdate"
+				<input type="date" id="birth" name="birth"
 					class="border border-black rounded-md px-2" value="1999-01-01">
 			</fieldset>
 			<p>성별</p>
@@ -99,9 +103,8 @@
 					<option class="text-slate-300 font-bold" disabled>
 						────────────
 					</option>
-					<option value="female">여성</option>
-					<option value="male">남성</option>
-					<option value="other">기타</option>
+					<option value="F">여성</option>
+					<option value="M">남성</option>
 				</select>
 			</fieldset>
 			<p>이메일</p>
@@ -136,7 +139,7 @@
 					class="border border-black rounded-md px-2 invalid:border-red-600"
 					onblur="applyValidation(this.id); this.value = this.value.trim();"
 				>
-				<input type="text" id="detailAddress" name="detail-address"
+				<input type="text" id="addressDetail" name="addressDetail"
 					placeholder="상세 주소를 입력하세요"
 					class="border border-black rounded-md px-2 invalid:border-red-600"
 					onblur="applyValidation(this.id); this.value = this.value.trim();"
@@ -154,7 +157,7 @@
 	</main>
 	<script defer>
 		window.addEventListener('DOMContentLoaded', (contentLoadedEvent) => {
-			submit.addEventListener('click', (e) => e.preventDefault());
+			// submit.addEventListener('click', (e) => e.preventDefault());
 		});
 	</script>
 	
@@ -166,7 +169,7 @@
 			const element = document.getElementById(id);
 
 			const requiredMap = {
-				userid: true,
+				userId: true,
 				password: true,
 				fullName: true,
 				tel: true,
@@ -177,7 +180,7 @@
 			};
 			
 			const patternMap = {
-				userid: '[A-Za-z0-9]{3,}',
+				userId: '[A-Za-z0-9]{3,}',
 				password: '^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,100}$',
 				fullName: '[가-힣]{2,}',
 				tel: '^\\d{2,3}-?\\d{3,4}-?\\d{4}$', // ^ 시작 $ 끝  // \d 정수
@@ -185,7 +188,7 @@
 				gender: null,
 				email: '^[^\\sㄱ-ㅎㅏ-ㅣ가-힣]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$', // ^ 시작 $ 끝  // \d 정수
 				address: '[\\s가-힣A-Za-z0-9]{3,}',
-				detailAddress: '[\\s가-힣A-Za-z0-9]{2,}',
+				addressDetail: '[\\s가-힣A-Za-z0-9]{2,}',
 			}
 			
 			element.required = requiredMap[id];
@@ -207,6 +210,10 @@
 		
 		const showOrHideTelMeesage = () => {
 			tel_box.style.display = tel.validity.valid ? 'none' : 'block';
+		}
+		
+		const submitForm = () => {
+			
 		}
 	</script>
 </body>

@@ -1,14 +1,27 @@
 package com.javalec.command;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class SSignUpCommand implements IntReturnCommand {
+import com.javalec.common.utils.parser.FormRequestBodyParser;
+import com.javalec.dao.SSignUpDao;
+import com.javalec.dto.SSignUpDto;
+
+public class SSignUpCommand implements SCommand {
+	
+	private final SSignUpDao dao = SSignUpDao.getInstance();
 
 	@Override
-	public int executeInt(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			SSignUpDto dto = FormRequestBodyParser.parseAs(request, SSignUpDto.class)
+					.orElseThrow(() -> new RuntimeException(""));
+			
+			dao.insert(dto);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-
 }
