@@ -82,6 +82,7 @@ public class Controller extends HttpServlet {
 				break;
 				
 			case "/purchase.do" :
+				System.out.println(session.getAttribute("size"));
 				command = new SPurchaseCommand();
 				command.execute(request, response);
 				

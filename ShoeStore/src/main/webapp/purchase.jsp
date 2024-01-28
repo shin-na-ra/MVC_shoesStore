@@ -125,7 +125,7 @@
 	    button.style.border = '1px solid black'; // Set border and color
 	
 	    // Update the hidden input with the selected size
-	    document.querySelectorAll('.c-button__hide').value = button.value;
+	    document.getElementById('selectedSize').value = button.value;
 		    
 	    /* $.ajax({
 	        type: "POST",
@@ -199,15 +199,12 @@
 							<br>
 							<div class="dtl-price-wrap">
 								<dl class="dtl-price">
-									<div class="dtl-price__discount">
-										<dt>₩ ${info.price}</dt>
-									</div>
+									<dt>₩ ${info.price}</dt>
 								</dl>
 							</div>
 						</div>
 						<br>
 						<br>
-						<form action="purchase.do" method="post" name="buy">
 							<div class="l-grid__row" data-ui-type="Detail_Item_Option">
 								<section>
 									<h3>SIZE</h3>
@@ -224,14 +221,15 @@
 								<br>
 								<div class="btm-drawer open">
 						        	<div class="c-btn_wrap" align="left">
-						                <!-- size 넘기기 위한 히든 인풋 -->
-						                <input type="hidden" class="c-button__hide" value="">
-						                <!-- 보이는 버튼 -->
-						                <input type="submit" class="c-button__primary" value="BUY NOW">						            
+						        		<form action="purchase.do" method="post">
+							                <!-- size 넘기기 위한 히든 인풋 -->
+							                <input type="hidden" class="selectedSize">
+							                <!-- 보이는 버튼 -->
+							                <input type="submit" class="c-button__primary" value="BUY NOW">
+						                </form>						            
 							        </div>
 							    </div>
 							</div>
-						</form>
 						<br>
 						<br>
 						<div class="l-grid__row" data-ui-type="Detail_Item_Description">
