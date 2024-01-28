@@ -14,6 +14,7 @@ import com.javalec.command.SCommand;
 import com.javalec.command.SLoginCommand;
 import com.javalec.command.SListCommand;
 import com.javalec.command.SPayCommand;
+import com.javalec.command.SSignUpCommand;
 
 /**
  * Servlet implementation class Controller
