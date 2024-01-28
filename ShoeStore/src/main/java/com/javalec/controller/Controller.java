@@ -12,7 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import com.javalec.command.SCommand;
 import com.javalec.command.SListCommand;
-import com.javalec.command.SPayCommand;
+import com.javalec.command.SPurchaseCommand;
+import com.javalec.command.SPurchaseViewCommand;
 
 /**
  * Servlet implementation class Controller
@@ -44,7 +45,6 @@ public class Controller extends HttpServlet {
 	}
 	
 	public void actionDo (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("actionDo");
 		
 		HttpSession session = request.getSession();
 		
@@ -55,9 +55,6 @@ public class Controller extends HttpServlet {
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
 		
-		System.out.println(com);
-		
-		
 		switch(com) {
 			//로그인페이지	
 			case "/list.do":
@@ -67,22 +64,30 @@ public class Controller extends HttpServlet {
 			case "/shoesList.do" :
 				command = new SListCommand();
 				command.execute(request, response);
+				session.setAttribute("id", "admin");
 				
 				viewPage = "product.jsp";
 				break;
 				
-			case "/pay_view.do" :
+			case "/purchase_view.do" :
 				// session을 통해 클릭한 신발의 code key를 보내기
 				String code = request.getParameter("code");
 				session.setAttribute("code", code);
 				
-				command = new SPayCommand();
-				command.execute(request, response);
-				// test용
-				command = new SListCommand();
+				command = new SPurchaseViewCommand();
 				command.execute(request, response);
 				
 				viewPage = "purchase.jsp";
+				
+				break;
+				
+			case "/purchase.do" :
+				command = new SPurchaseCommand();
+				command.execute(request, response);
+				
+				viewPage = "shoesList.do";
+				break;
+				
 			default :
 				break;
 			

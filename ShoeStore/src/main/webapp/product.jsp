@@ -74,6 +74,17 @@
 	}
 </script>
 
+<!-- JavaScript function to submit the form -->
+<script>
+    function submitForm(code) {
+        // hidden으로 되어 있는 codeInput에 데이터를 넘겨주며
+        document.getElementById("codeInput").value = code;
+        
+        // myform을 실행한다.
+        document.getElementById("myForm").submit();
+    }
+</script>
+
 <main>
 	  <!-- <section class="py-5 text-center container" style="height: 180px;">
 	    <div class="row py-lg-3">
@@ -88,8 +99,9 @@
 	    <div class="row row-cols-1 row-cols-md-3 g-4" >
 	      <c:forEach items="${shoesList}" var="dto">
 	        <div class="col">
-	          <a href="pay_view.do?code=${dto.code}" style="text-decoration: none;">
-	            <div class="card shadow-sm">
+	        	<!-- 카드 클릭 시 function submitForm(dto.code) 코드를 넘겨준다. -->
+	            <a href="#" onclick="submitForm('${dto.code}');" style="text-decoration: none;">
+    				<div class="card shadow-sm">
 	            
 		            <%-- <svg class="bd-placeholder-img card-img-top" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
 					    <title>Placeholder</title>
@@ -97,17 +109,21 @@
 					    <text x="10%" y="10%" fill="#eceeef" dy=".3em" align="center" style="font-weight: bold;">${dto.brand}</text>
 					</svg> --%>
 	            
-	              <svg class="bd-placeholder-img card-img-top" width="100%" height="0px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-	                <title>Placeholder</title>
-	                <img src="${dto.image}" alt="Shoe Image">
-	                <text x="50%" y="50%" fill="#eceeef" dy=".3em" align="center" text-anchor="middle" style="font-weight: bold;">${dto.brand}</text>
-	                <%-- <text x="10%" y="10%" fill="#eceeef" dy=".3em" align="center" style="font-weight: bold;">${dto.brand}</text> --%>
-	              </svg>
-	              <div class="card-body">
-	                <p class="card-text" align="center">${dto.name}<br>₩ ${dto.price}</p>
-	              </div>
-	            </div>
-	          </a>
+		              <svg class="bd-placeholder-img card-img-top" width="100%" height="0px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+		                <title>Placeholder</title>
+		                <img src="${dto.image}" alt="Shoe Image">
+		                <text x="50%" y="50%" fill="#eceeef" dy=".3em" align="center" text-anchor="middle" style="font-weight: bold;">${dto.brand}</text>
+		                <%-- <text x="10%" y="10%" fill="#eceeef" dy=".3em" align="center" style="font-weight: bold;">${dto.brand}</text> --%>
+		              </svg>
+		              <div class="card-body">
+		                <p class="card-text" align="center">${dto.name}<br>₩ ${dto.price}</p>
+		              </div>
+		            </div>
+		          </a>
+		          <!-- a 태그 클릭시 이 폼이 실행된다. -->
+	         	 <form id="myForm" action="purchase_view.do" method="post" style="display: none;">
+				    <input type="hidden" name="code" id="codeInput">
+				</form>
 	        </div>
 	      </c:forEach>
 	    </div>
