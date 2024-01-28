@@ -60,6 +60,7 @@ public class SSignUpDao {
 		}
 	}
 	
+	// 싱글톤 패턴
 	private static class SSignUpDaoHolder {
 		private static final SSignUpDao INSTNACE = new SSignUpDao();
 	}
