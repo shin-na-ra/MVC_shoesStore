@@ -1,12 +1,12 @@
-package com.shoes.command;
+package com.javalec.command;
 
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.shoes.dao.AdminDao;
-import com.shoes.dto.AdminDto;
+import com.javalec.dao.AdminDao;
+import com.javalec.dto.AdminDto;
 
 public class SLoadProductCommand implements SCommand {
 

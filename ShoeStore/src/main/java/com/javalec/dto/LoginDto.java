@@ -1,4 +1,4 @@
-package com.shoes.dto;
+package com.javalec.dto;
 
 public class LoginDto {
 	

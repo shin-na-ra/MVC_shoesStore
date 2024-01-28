@@ -1,4 +1,4 @@
-package com.shoes.dao;
+package com.javalec.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

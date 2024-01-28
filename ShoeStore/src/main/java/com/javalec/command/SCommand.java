@@ -1,4 +1,4 @@
-package com.shoes.command;
+package com.javalec.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

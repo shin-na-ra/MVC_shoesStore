@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Album example · Bootstrap v5.1</title>
+    <title>E SHOE</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
 
@@ -258,66 +258,48 @@
 
 <script>
 	function searchShoes() {
-	  // Get the search input value
-	  var searchInput = document.getElementById('searchInput').value.toLowerCase();
-	
-	  // Loop through the card elements and show/hide based on the search input
-	  var cards = document.getElementsByClassName('card');
-	  for (var i = 0; i < cards.length; i++) {
-	    var cardText = cards[i].innerText.toLowerCase();
-	    cards[i].style.display = cardText.includes(searchInput) ? 'block' : 'none';
-	  }
 	}
-
-  // Function to handle translation using Google Translate API
-  function googleTranslateElementInit(searchInput, callback) {
-    new google.translate.TranslateElement({pageLanguage: 'ko', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-    // Wait for the translation to complete
-    var observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        if (mutation.addedNodes && mutation.addedNodes.length > 0 && mutation.addedNodes[0].nodeType == 1 && mutation.addedNodes[0].className == 'goog-te-menu-value') {
-          // Translation completed, get the translated text
-          var translatedText = document.querySelector('.goog-te-menu-value span').innerText;
-          callback(translatedText);
-        }
-      });
-    });
-    observer.observe(document.body, {childList: true, subtree: true});
-  }
 </script>
 
 <main>
-	  <section class="py-5 text-center container">
-	    <div class="row py-lg-5">
+	  <!-- <section class="py-5 text-center container" style="height: 180px;">
+	    <div class="row py-lg-3">
 	      <div class="col-lg-6 col-md-8 mx-auto">
 	        <h1 class="fw-light" style="font-weight=bold; font-size=50px">E Shoe</h1>
 	      </div>
 	    </div>
-	  </section>
+	  </section> -->
 	  
 	<div class="album py-5 bg-light">
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-3">
-      <c:forEach items="${shoesList}" var="dto">
-        <div class="col">
-          <a href="pay_view.do" style="text-decoration: none;">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <img src="${dto.image}" alt="Shoe Image">
-                <text x="10%" y="10%" fill="#eceeef" dy=".3em" align="center">${dto.brand}</text>
-              </svg>
-              <div class="card-body">
-                <p class="card-text" align="center">${dto.name}</p>
-                <p class="card-text" align="center">₩ ${dto.price}</p>
-              </div>
-            </div>
-          </a>
-        </div>
-      </c:forEach>
-    </div>
-  </div>
-</div>
+	  <div class="container">
+	    <div class="row row-cols-1 row-cols-md-3 g-4" >
+	      <c:forEach items="${shoesList}" var="dto">
+	        <div class="col">
+	          <a href="pay_view.do?code=${dto.code}" style="text-decoration: none;">
+	            <div class="card shadow-sm">
+	            
+		            <%-- <svg class="bd-placeholder-img card-img-top" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+					    <title>Placeholder</title>
+					    <image href="${dto.image}" width="100%" height="100%" object-fit="cover"/>
+					    <text x="10%" y="10%" fill="#eceeef" dy=".3em" align="center" style="font-weight: bold;">${dto.brand}</text>
+					</svg> --%>
+	            
+	              <svg class="bd-placeholder-img card-img-top" width="100%" height="0px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+	                <title>Placeholder</title>
+	                <img src="${dto.image}" alt="Shoe Image">
+	                <text x="50%" y="50%" fill="#eceeef" dy=".3em" align="center" text-anchor="middle" style="font-weight: bold;">${dto.brand}</text>
+	                <%-- <text x="10%" y="10%" fill="#eceeef" dy=".3em" align="center" style="font-weight: bold;">${dto.brand}</text> --%>
+	              </svg>
+	              <div class="card-body">
+	                <p class="card-text" align="center">${dto.name}<br>₩ ${dto.price}</p>
+	              </div>
+	            </div>
+	          </a>
+	        </div>
+	      </c:forEach>
+	    </div>
+	  </div>
+	</div>
 </main>
 
 <footer class="text-muted py-5">
