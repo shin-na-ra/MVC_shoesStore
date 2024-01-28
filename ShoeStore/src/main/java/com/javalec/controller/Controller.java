@@ -14,6 +14,7 @@ import com.javalec.command.SCommand;
 import com.javalec.command.SLoginCommand;
 import com.javalec.command.SListCommand;
 import com.javalec.command.SPayCommand;
+import com.javalec.command.SSignUpCommand;
 
 /**
  * Servlet implementation class Controller
@@ -100,6 +101,18 @@ public class Controller extends HttpServlet {
 				viewPage = "pay.jsp";   
 				
 				viewPage = "purchase.jsp";
+				
+				// 회원가입 폼 (signup.jsp로 이동)
+			case "/signUpForm.do":
+				viewPage = "signup.jsp";
+				break;
+			// 회원가입 처리 (처리 후 로그인 폼으로 이동)
+			case "/signUp.do":
+				// TODO 가입
+				command = new SSignUpCommand();
+				command.execute(request, response);
+				viewPage = "/list.do";
+				break;
 			default :
 				break;
 			
