@@ -2,6 +2,7 @@ package com.javalec.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Timestamp;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -38,9 +39,13 @@ public class SSignUpDao {
 					pw,
 					name,
 					tel,
-					address
+					address,
+					address_detail,
+					gender,
+					email,
+					birthdate
 				)
-				VALUES (?,?,?,?,?)
+				VALUES (?,?,?,?,?,?,?,?,?)
 				""";
 		
 		try (
@@ -52,6 +57,10 @@ public class SSignUpDao {
 			preparedStatement.setString(3, dto.fullName());
 			preparedStatement.setString(4, dto.tel());
 			preparedStatement.setString(5, dto.address());
+			preparedStatement.setString(6, dto.addressDetail());
+			preparedStatement.setString(7, dto.gender().name());
+			preparedStatement.setString(8, dto.email());
+			preparedStatement.setTimestamp(9, Timestamp.from(dto.birth()));
 			
 			return preparedStatement.executeUpdate();
 		} catch (Exception e) {
