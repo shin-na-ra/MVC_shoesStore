@@ -22,7 +22,7 @@
                 Products
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="productregister.do">등록</a></li>
+                <li><a class="dropdown-item" href="ProductRegister.jsp">등록</a></li>
                 <li><a class="dropdown-item" href="#">수정</a></li>
                 <li><a class="dropdown-item" href="#">삭제</a></li>
               </ul>
