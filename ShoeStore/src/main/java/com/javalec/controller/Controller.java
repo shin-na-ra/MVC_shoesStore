@@ -72,8 +72,10 @@ public class Controller extends HttpServlet {
 	            // 로그인 성공 시 viewPage 설정
 	            if ("success".equals(loginResult)) {
 	            	viewPage = "/shoesList.do";  // 로그인 성공
+	            	
 	            } else if ("admin".equals(loginResult)) {
 	            	viewPage = "/loadProducts.do";   // 관리자 로그인 성공
+	            	
 	            } else {
 	            	viewPage = "/list.do";    // 로그인 실패
 	            }
@@ -142,6 +144,11 @@ public class Controller extends HttpServlet {
 				
 				viewPage = "shoesList.do";
 				break;	
+				
+			case "/logout.do" :
+				viewPage = "login.jsp";
+				session.invalidate();
+				
 				
 			default :
 				break;
