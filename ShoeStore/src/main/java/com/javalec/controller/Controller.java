@@ -1,7 +1,5 @@
 package com.javalec.controller;
-
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import com.javalec.command.SAdminUploadFileCommand;
 import com.javalec.command.SCommand;
 import com.javalec.command.SLoginCommand;
@@ -18,14 +15,12 @@ import com.javalec.command.SLoadProductCommand;
 import com.javalec.command.SSignUpCommand;
 import com.javalec.command.SPurchaseCommand;
 import com.javalec.command.SPurchaseViewCommand;
-
 /**
  * Servlet implementation class Controller
  */
 @WebServlet("*.do")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -33,14 +28,12 @@ public class Controller extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		actionDo(request, response);
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -62,7 +55,6 @@ public class Controller extends HttpServlet {
 		String com = uri.substring(conPath.length());
 		
 		switch(com) {
-
 			// 로그인화면 조회하기 (login.jsp로 이동)
 			case "/list.do":
 				viewPage = "login.jsp";
@@ -72,11 +64,11 @@ public class Controller extends HttpServlet {
 			case "/login.do":
 	            command = new SLoginCommand();
 	            command.execute(request, response);
-	            
+	           
 	            // 로그인 성공 여부 확인
 	            String loginResult = (String) request.getAttribute("loginResult");
 	            System.out.println("loginResult" + loginResult);
-	            	           
+	            	          
 	            // 로그인 성공 시 viewPage 설정
 	            if ("success".equals(loginResult)) {
 	            	viewPage = "/shoesList.do";  // 로그인 성공
@@ -86,7 +78,7 @@ public class Controller extends HttpServlet {
 	            	viewPage = "/list.do";    // 로그인 실패
 	            }
 	            break;
-	            
+	           
 			case "/shoesList.do" :
 				command = new SListCommand();
 				command.execute(request, response);
@@ -121,7 +113,6 @@ public class Controller extends HttpServlet {
 				
 				viewPage = "loadProducts.do";
 				break;
-				
 				
 			case "/purchase_view.do" :
 				// session을 통해 클릭한 신발의 code key를 보내기
@@ -161,6 +152,4 @@ public class Controller extends HttpServlet {
 		rd.forward(request, response);	
 				
 	}
-
-
 }

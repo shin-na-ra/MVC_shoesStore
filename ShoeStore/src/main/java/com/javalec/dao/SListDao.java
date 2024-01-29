@@ -119,7 +119,7 @@ public class SListDao {
 			String query = "SELECT MAX(code) as code, name, "
 					+ "max(Kname)as Kname, MAX(brand) as brand, max(Kbrand) as Kbrand, "
 					+ "MAX(color) as color, MAX(format(price, 0)) as price, "
-					+ "MAX(qty) as qty, MAX(image) as image "
+					+ "MAX(image) as image "
 					+ "FROM product "
 					+ "GROUP BY name";
 			
@@ -134,11 +134,10 @@ public class SListDao {
 				String Kname = rs.getString("Kname");
 				String color = rs.getString("color");
 				String price = rs.getString("price");
-				int qty = rs.getInt("qty");
 				String image = rs.getString("image");
 				
 				SListDto dto = new SListDto(code, brand, Kbrand, name, 
-						Kname, color, price, qty, image);
+						Kname, color, price, image);
 				
 				
 				dtos.add(dto);
@@ -175,7 +174,7 @@ public class SListDao {
 			String query = "SELECT MAX(code) as code, name, "
 					+ "max(Kname)as Kname, MAX(brand) as brand, max(Kbrand) as Kbrand, "
 					+ "MAX(color) as color, MAX(format(price, 0)) as price, "
-					+ "MAX(qty) as qty, MAX(image) as image, "
+					+ "MAX(image) as image, "
 					+ "max(description) as description, max(metarial) as metarial, "
 					+ "max(company) as company, max(madein) as madein "
 					+ "FROM product "
@@ -196,14 +195,13 @@ public class SListDao {
 				String Kname = rs.getString("Kname");
 				String color = rs.getString("color");
 				String price = rs.getString("price");
-				int qty = rs.getInt("qty");
 				String description = rs.getString("description");
 				String metarial = rs.getString("metarial");
 				String company = rs.getString("company");
 				String madein = rs.getString("madein");
 				
 				SListDto dto = new SListDto(code, brand, Kbrand, name, 
-						Kname, color, price, qty, description,
+						Kname, color, price, description,
 						metarial, company, madein);
 				
 				
@@ -242,7 +240,7 @@ public class SListDao {
 			String query = "SELECT MAX(code) as code, name, "
 					+ "max(Kname)as Kname, MAX(brand) as brand, max(Kbrand) as Kbrand, "
 					+ "MAX(color) as color, MAX(format(price, 0)) as price, "
-					+ "MAX(qty) as qty, MAX(image) as image "
+					+ "MAX(image) as image "
 					+ "FROM product "
 					+ "where brand like '" + searchInput + "%' "
 							+ "or Kbrand like '" + searchInput + "%' "
@@ -263,11 +261,10 @@ public class SListDao {
 				String Kname = rs.getString("Kname");
 				String color = rs.getString("color");
 				String price = rs.getString("price");
-				int qty = rs.getInt("qty");
 				String image = rs.getString("image");
 				
 				SListDto dto = new SListDto(code, brand, Kbrand, name, 
-						Kname, color, price, qty, image);
+						Kname, color, price, image);
 				
 				
 				dtos.add(dto);
@@ -300,7 +297,7 @@ public class SListDao {
 		try {
 			con = dataSource.getConnection();
 			
-			String query = "select size from product_size where product_code = ?";
+			String query = "select size, qty from product_size where product_code = ?";
 			
 			ps = con.prepareStatement(query);
 			ps.setInt(1, code);
@@ -309,8 +306,9 @@ public class SListDao {
 			
 			while(rs.next()) {
 				int size = rs.getInt("size");
+				int qty = rs.getInt("qty");
 				
-				SListDto dto = new SListDto(size);
+				SListDto dto = new SListDto(size, qty);
 				dtos.add(dto);
 			}
 		}
@@ -462,13 +460,13 @@ public class SListDao {
 			
 			
 			try {
-				String updateQuery = "update product_size set qty = ? where code = ? and size = ?";
+				String updateQuery = "update product_size set where product_code = ? and size = ? qty = ?";
 				
 				ps = con.prepareStatement(updateQuery);
 				
-				ps.setInt(1, product_sizeQty - purchaseQty);
-				ps.setInt(2, code);
-				ps.setInt(3, hiddenSize);
+				ps.setInt(1, code);
+				ps.setInt(2, hiddenSize);
+				ps.setInt(3, product_sizeQty - purchaseQty);
 				
 				ps.executeUpdate();
 			}

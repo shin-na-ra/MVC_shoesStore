@@ -1,5 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
   <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd; height: 90px;">
       <div class="container">
         <a class="navbar-brand" href="loadProducts.do" style="font-size: 30px; color:#000000"><strong>E Shoe</strong></a>
@@ -30,8 +31,12 @@
           </ul>
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="검색" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit" style="width:100px; background-color: #FFFFFF; border-color: #000000; color: #000000; font-size: 15px">검색</button>
+            <button class="btn btn-outline-success" type="submit" style="width:100px;/*  background-color: #FFFFFF; color: #000000; */ font-size: 15px">검색</button>
           </form>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <form action="logout.do">
+          <button class="btn btn-dark" type="submit" style="width:100px; font-size: 15px">로그아웃</button>
+        </form>
         </div>
       </div>
     </nav> 

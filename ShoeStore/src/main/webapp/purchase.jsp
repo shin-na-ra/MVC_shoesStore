@@ -98,13 +98,19 @@
   </head>
  <body>
     
-    
 <header>
   <div class="navbar navbar-dark bg-dark shadow-sm">
 	  <div class="container d-flex justify-content-between">
 	    <a href="shoesList.do" class="navbar-brand" style="font-size:30px">
 	      <strong>E Shoe</strong>
 	    </a>
+	    <div class="input-group" style="width: 22%; text-align: left;">
+	    	<form action="search.do" method="post" name="searchAction">
+			    <input id="searchInput" name="searchInput" class="form-control" type="search" placeholder="Search" aria-label="Search" style="font-size: 14px;">
+		    </form>
+			    <!-- 검색을 클릭하면 밑에 script로 이동 -->
+			    <button type="button" onclick="searchShoes()" class="btn btn-outline-success" style="background-color: #000000; border-color: #000000; color: #FFFFFF; font-size: 15px">검색</button>
+		</div>
   </div>
 </div>
 </header>
@@ -112,23 +118,38 @@
 
 <!-- 사이즈 클릭 후 구매하기 버튼을 누르면 작동하는 함수 -->
 <script>
+	/* 검색을 위한 formaction */
+	function searchShoes() {
+	  	var search = document.searchAction;
+	  		  
+	  	search.submit();
+	}
+
 	function selectSize(button) {
 	    // 모든 버튼들 스타일 초기화
-	    var buttons = document.querySelectorAll('.c-chip');
-	    buttons.forEach(function (btn) {
-	        btn.style.backgroundColor = ''; // 배경 초기화
-	        btn.style.border = ''; // 보더 초기화
-	    });
-	
-	    // 클릭 시 배경화면 색상 설정
-	    button.style.backgroundColor = 'white';
-	    button.style.border = '1px solid black'; // Set border and color
+	    var hiddenSize = document.getElementById('hiddenQty').value;
 	    
-	    document.getElementById("hiddenSize").value = button.value;
+	    if (hiddenSize != null) {
+		    var buttons = document.querySelectorAll('.c-chip');
+		    buttons.forEach(function (btn) {
+		        btn.style.backgroundColor = ''; // 배경 초기화
+		        btn.style.border = ''; // 보더 초기화
+		    });
+		
+		    // 클릭 시 배경화면 색상 설정
+		    button.style.backgroundColor = 'white';
+		    button.style.border = '1px solid black'; // Set border and color
+		    
+		    document.getElementById("hiddenSize").value = button.value;
+	    }
+	    else {
+	    	alert("품절된 사이즈입니다.")
+	    }
 	}
 	
+	/* 선택한 사이즈를 보내기 위한 formaction 실행 */
 	function sendSize() {
-		
+	
 		var s = document.buy;
 		
 		s.submit();
@@ -210,6 +231,7 @@
 										<c:forEach items="${shoesSize}" var="shoeSize">
 											   <input class="c-chip" type="button" id="size" 
 											       name="size" value="${shoeSize.size}" onclick="selectSize(this)">
+											   <input type="hidden" name="hiddenQty" value="${shoeSize.qty}">
 										</c:forEach> 
 									</div>
 								</section>
