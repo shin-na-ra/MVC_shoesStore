@@ -32,23 +32,30 @@
 			<fieldset class="flex flex-col col-span-2">
 				<input type="password" id="password" name="password"
 					class="peer w-full min-w-0 border border-black rounded-md px-2 text-left invalid:border-red-600 invalid:outline-red-800 duration-150 active:scale-[0.98]"
-					onblur="applyValidation('password')"> <label
+					onblur="applyValidation('password')"
+				>
+				<label
 					for="password" class="text-red-600 hidden peer-invalid:block text-sm">
-					비밀번호는 영문 대소문자, 숫자 8자리 이상. </label>
+					비밀번호는 영문 대소문자, 숫자 8자리 이상.
+				</label>
 			</fieldset>
 			<p>성명*</p>
 			<fieldset class="flex flex-col col-span-2">
 				<input type="text" id="fullName" name="fullName"
 					class="peer w-full min-w-0 border border-black rounded-md px-2 text-left invalid:text-slate-400 invalid:border-red-600 invalid:outline-red-800 duration-150 active:scale-[0.98]"
-					onblur="applyValidation(this.id)"> <label
+					onblur="applyValidation(this.id)"
+				>
+				<label
 					for="fullName" class="text-red-600 hidden peer-invalid:block text-sm">
-					성명은 완성된 한글로 두 글자 이상 입력하십시오. </label>
+					성명은 완성된 한글로 두 글자 이상 입력하십시오.
+				</label>
 			</fieldset>
 			<p>연락처*</p>
 			<fieldset class="col-span-2 flex justify-between gap-2">
 				<select id="tel1" name="tel1"
 					onchange="updateTel(); if (value !== '0') tel2.focus()"
-					class="appearance-none border border-black rounded-md px-2">
+					class="appearance-none border border-black rounded-md px-2"
+				>
 					<option value="0" selected>선택</option>
 					<option value="010">010</option>
 					<option value="011">011</option>
@@ -78,27 +85,32 @@
 				<span>-</span>
 				<input type="text" id="tel2" name="tel2" maxlength="4"
 					class="border border-black rounded-md px-2 text-left min-w-0 w-14"
-					oninput="if (this.value.length >= this.maxLength) tel3.focus(); updateTel();">
+					oninput="if (this.value.length >= this.maxLength) tel3.focus(); updateTel();"
+				>
 				<span>-</span>
 				<input type="text" id="tel3" name="tel3" maxlength="4"
 					class="border border-black rounded-md px-2 text-left min-w-0 w-14"
 					onblur="applyValidation('tel'); showOrHideTelMeesage();"
-					oninput="updateTel()">
+					oninput="updateTel()"
+				>
 			</fieldset>
 			<div id="tel_box" class="col-start-2 col-span-2 hidden">
 				<input type="text" id="tel" name="tel" class="peer hidden">
 				<label class="hidden peer-invalid:block text-red-600 text-sm">
-					올바른 연락처를 입력하십시오. </label>
+					올바른 연락처를 입력하십시오.
+				</label>
 			</div>
 			<p>생년월일</p>
 			<fieldset class="flex flex-col col-span-2">
 				<input type="date" id="birth" name="birth"
-					class="border border-black rounded-md px-2" value="1999-01-01">
+					class="border border-black rounded-md px-2" value="1999-01-01"
+				>
 			</fieldset>
 			<p>성별</p>
 			<fieldset class="flex flex-col col-span-2">
 				<select id="gender" name="gender"
-					class="w-full max-w-full overflow-hidden border border-black rounded-md px-1">
+					class="w-full max-w-full overflow-hidden border border-black rounded-md px-1"
+				>
 					<option value="">선택</option>
 					<option class="text-slate-300 font-bold" disabled>
 						────────────
@@ -111,13 +123,15 @@
 			<fieldset class="flex flex-row col-span-2 justify-between">
 				<input type="text" id="email1" name="email1" placeholder="이메일 ID 입력"
 					onchange="updateEmail()"
-					class="border border-black rounded-md px-2 min-w-0 w-24 placeholder:text-[0.5em] placeholder:-translate-y-0.5">
-				@
+					class="border border-black rounded-md px-2 min-w-0 w-24 placeholder:text-[0.5em] placeholder:-translate-y-0.5"
+				>
+				<span>@</span>
 				<input type="text" id="email2" name="email2"
 					placeholder="도메인 주소" onchange="updateEmail()"
 					class="border border-black rounded-md px-2 min-w-0 w-24 placeholder:text-[0.5em] placeholder:-translate-y-0.5"
-					list="domainSelect" oninput="updateEmail(this.value)">
-				<input type="hidden" id="email" name="email">
+					list="domainSelect" oninput="updateEmail(this.value)"
+				>
+				<%-- <input type="hidden" id="email" name="email"> --%>
 				<datalist id="domainSelect">
 					<option value="aol.com">aol.com</option>
 					<option value="daum.net">daum.net</option>
@@ -186,7 +200,7 @@
 				tel: '^\\d{2,3}-?\\d{3,4}-?\\d{4}$', // ^ 시작 $ 끝  // \d 정수
 				birth: null,
 				gender: null,
-				email: '^[^\\sㄱ-ㅎㅏ-ㅣ가-힣]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$', // ^ 시작 $ 끝  // \d 정수
+				email: '^[^\\sㄱ-ㅎㅏ-ㅣ가-힣]+@[a-zA-Z0-9.-]+(?:\\.[a-zA-Z]{2,})+$', // ^ 시작 $ 끝  // \d 정수
 				address: '[\\s가-힣A-Za-z0-9]{3,}',
 				addressDetail: '[\\s가-힣A-Za-z0-9]{2,}',
 			}
@@ -205,10 +219,10 @@
 		const updateTel = () => {
 			tel.value = tel1.value + '-' + tel2.value + '-' + tel3.value;
 			console.debug('tel.validity.valid: ', tel.validity.valid);
-			showOrHideTelMeesage();
+			showOrHideTelMessage();
 		};
 		
-		const showOrHideTelMeesage = () => {
+		const showOrHideTelMessage = () => {
 			tel_box.style.display = tel.validity.valid ? 'none' : 'block';
 		}
 		
