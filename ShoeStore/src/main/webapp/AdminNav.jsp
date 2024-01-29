@@ -1,13 +1,13 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-  <nav class="navbar navbar-expand-lg" style="background-color: #000; height: 90px;">
+  <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd; height: 90px;">
       <div class="container">
-        <a class="navbar-brand" href="loadProducts.do" style="font-size: 30px; color:#FFFFFF">E Shoe</a>
+        <a class="navbar-brand" href="loadProducts.do" style="font-size: 30px; color:#000000"><strong>E Shoe</strong></a>
         
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 20px;">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 20px; color:#FFFFFF">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 20px; color:#000000">
                 Products
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -18,7 +18,7 @@
             </li>
             &nbsp;&nbsp;&nbsp;
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 20px; color:#FFFFFF">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 20px; color:#000000">
                	매출
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
