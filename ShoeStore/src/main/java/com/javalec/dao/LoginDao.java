@@ -102,8 +102,8 @@ public class LoginDao {
 //                System.out.println("DB Password: " + rs.getString("pw"));
 //            }
 //            
-            System.out.println("ID Match: " + "admin".equals(id));
-            System.out.println("Password Match: " + "admin1234!@".equals(password));
+//            System.out.println("ID Match: " + "admin".equals(id));
+//            System.out.println("Password Match: " + "admin1234!@".equals(password));
             
             // 결과 집합에 행이 있는지 확인
             return rs.next();
