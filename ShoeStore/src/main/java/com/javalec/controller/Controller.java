@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.javalec.command.SAdminUploadFileCommand;
 import com.javalec.command.SCommand;
 import com.javalec.command.SLoginCommand;
 import com.javalec.command.SListCommand;
@@ -120,6 +121,13 @@ public class Controller extends HttpServlet {
 				command.execute(request, response);
 				
 				viewPage = "AdminPage.jsp";
+				break;
+			
+			case "/update.do" :
+				command = new SAdminUploadFileCommand();
+				command.execute(request, response);
+				
+				viewPage = "loadProducts.do";
 				break;
 				
 			default :

@@ -108,19 +108,19 @@
 				<div class="additional-text ml-md-auto">
 					<form action="update.do" name="registerForm" method="post" enctype="multipart/form-data">
 						<div class="form-floating" style="margin-left: 20px;">
-							<input type="file" name="image" class="form-control"
+							<input type="file" name="image1" class="form-control"
 								id="fileInput" accept="image/*"
 								style="width: 500px; height: 60px; margin-bottom: 25px"> 
 								<label for="fileInput">사진 업로드</label>
 						</div>
 						<div class="form-floating" style="margin-left: 20px;">
-							<input type="file" name="image" class="form-control"
+							<input type="file" name="image2" class="form-control"
 								id="fileInput" accept="image/*"
 								style="width: 500px; height: 60px; margin-bottom: 25px">
 								<label for="fileInput">사진 업로드</label>
 						</div>
 						<div class="form-floating" style="margin-left: 20px;">
-							<input type="file" name="image" class="form-control"
+							<input type="file" name="image3" class="form-control"
 								id="fileInput" accept="image/*"
 								style="width: 500px; height: 60px; margin-bottom: 26px"> 
 								<label for="fileInput">사진 업로드</label>
