@@ -148,23 +148,22 @@ public class AdminDao {
 			PreparedStatement preparedStatement = null;
 			
 //			String query = "insert into product (brand,kbrand,name,kname,color,price,size,qty,image,description,metarial,company,madein) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-			String query = "insert into product (brand,name,color,price,description,metarial,company,madein,image) values (?,?,?,?,?,?,?,?,?)";
+			String query = "insert into product (brand,kbrand,name,color,price,description,metarial,company,madein,image) values (?,?,?,?,?,?,?,?,?,?)";
 			try {
 				connection = dataSource.getConnection();
 				
 				preparedStatement = connection.prepareStatement(query);
 				
 				preparedStatement.setString(1, brand);
-				preparedStatement.setString(2, name);
-				preparedStatement.setString(3, color);
-				preparedStatement.setInt(4, price);
-//				preparedStatement.setInt(5, qty);
-				preparedStatement.setString(5, description);
-				preparedStatement.setString(6, material);
-				preparedStatement.setString(7, company);
-				preparedStatement.setString(8, madein);
-				System.out.println(originalFileName);
-				preparedStatement.setString(9, originalFileName);
+				preparedStatement.setString(2, koreanTranslator(brand));
+				preparedStatement.setString(3, name);
+				preparedStatement.setString(4, color);
+				preparedStatement.setInt(5, price);
+				preparedStatement.setString(6, description);
+				preparedStatement.setString(7, material);
+				preparedStatement.setString(8, company);
+				preparedStatement.setString(9, madein);
+				preparedStatement.setString(10, originalFileName);
 				
 				preparedStatement.executeUpdate();
 				
@@ -263,6 +262,24 @@ public class AdminDao {
 		
 	}
 	
+	public String koreanTranslator(String brand) {
+		String value = brand;
+		
+		if(value.equals("NIKE")) {
+			value = "나이키";
+		}
+		else if(value.equals("NEW BALANCE")) {
+			value = "뉴발란스";
+		}
+		else if(value.equals("ADIDAS")) {
+			value = "아디다스";
+		}
+		else if(value.equals("VANS")) {
+			value = "반스";
+		}
+		
+		return value;
+	}
 	
 	
 }

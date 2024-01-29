@@ -111,9 +111,9 @@
 							<input type="file" name="image1" class="form-control"
 								id="fileInput" accept="image/*"
 								style="width: 500px; height: 60px; margin-bottom: 25px"> 
-								<label for="fileInput">사진 업로드</label>
+								<label for="fileInput">메인 사진 업로드</label>
 						</div>
-						<div class="form-floating" style="margin-left: 20px;">
+						<!-- <div class="form-floating" style="margin-left: 20px;">
 							<input type="file" name="image2" class="form-control"
 								id="fileInput" accept="image/*"
 								style="width: 500px; height: 60px; margin-bottom: 25px">
@@ -124,12 +124,11 @@
 								id="fileInput" accept="image/*"
 								style="width: 500px; height: 60px; margin-bottom: 26px"> 
 								<label for="fileInput">사진 업로드</label>
-						</div>
+						</div> -->
 						<div class="form-floating" style="margin-left: 21px;">
 							<label for="descriptionInput">상세 설명</label>
 							<textarea name="description" class="form-control" id="descriptionInput"
-								style="width: 500px; height: 411px; font-size: 20px; padding-top: 60px;">
-							</textarea>
+								style="width: 500px; height: 411px; font-size: 20px; padding-top: 60px;"></textarea>
 						</div>
 				</div>
 			</div>
@@ -141,10 +140,10 @@
 							<select class="form-select" id="floatingSelect" name="brand"
 								style="font-size: 20px; height: 60px; width: 450px">
 								<option value="unselecte">선택</option>
-								<option value="Newbalance">Newbalance</option>
-								<option value="Nike">Nike</option>
-								<option value="Adidas">Adidas</option>
-								<option value="Vans">Vans</option>
+								<option value="NEW BALANCE">NEW BALANCE</option>
+								<option value="NIKE">NIKE</option>
+								<option value="ADIDAS">ADIDAS</option>
+								<option value="VANS">VANS</option>
 							</select> <label for="floatingSelect">브랜드 선택</label>
 						</div>
 						<br>
