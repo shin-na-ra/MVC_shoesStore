@@ -90,7 +90,7 @@
 				<span>-</span>
 				<input type="text" id="tel3" name="tel3" maxlength="4"
 					class="border border-black rounded-md px-2 text-left min-w-0 w-14"
-					onblur="applyValidation('tel'); showOrHideTelMeesage();"
+					onblur="applyValidation('tel'); showOrHideTelMessage();"
 					oninput="updateTel()"
 				>
 			</fieldset>
@@ -125,11 +125,13 @@
 					onchange="updateEmail()"
 					class="border border-black rounded-md px-2 min-w-0 w-24 placeholder:text-[0.5em] placeholder:-translate-y-0.5"
 				>
-				<span>@</span>
+				@
 				<input type="text" id="email2" name="email2"
 					placeholder="도메인 주소" onchange="updateEmail()"
 					class="border border-black rounded-md px-2 min-w-0 w-24 placeholder:text-[0.5em] placeholder:-translate-y-0.5"
-					list="domainSelect" oninput="updateEmail(this.value)"
+					list="domainSelect"
+					onblur="applyValidation('email'); showOrHideEmailMessage();"
+					oninput="updateEmail(this.value)"
 				>
 				<%-- <input type="hidden" id="email" name="email"> --%>
 				<datalist id="domainSelect">
@@ -146,6 +148,12 @@
 					<option value="yahoo.com">yahoo.com</option>
 				</datalist>
 			</fieldset>
+			<div id="email_box" class="col-start-2 col-span-2 hidden">
+				<input type="text" id="email" name="email" class="peer hidden">
+				<label class="hidden peer-invalid:block text-red-600 text-sm">
+					올바른 이메일 주소를 입력하십시오.
+				</label>
+			</div>
 			<p>주소</p>
 			<fieldset class="flex flex-col col-span-2 gap-2">
 				<input type="text" id="address" name="address"
@@ -214,7 +222,13 @@
 		// Arrow Function
 		const updateEmail = () => {
 			email.value = email1.value + '@' + email2.value;
+			console.debug('email.validity.valid : ', email.validity.valid);
+			showOrHideEmailMessage();
 		};
+		
+		const showOrHideEmailMessage = () => {
+			email_box.style.display = email.validity.valid ? 'none' : 'block';
+		}
 		
 		const updateTel = () => {
 			tel.value = tel1.value + '-' + tel2.value + '-' + tel3.value;
