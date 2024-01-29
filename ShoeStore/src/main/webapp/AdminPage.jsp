@@ -60,18 +60,19 @@
 	
 	<div class="container">
     <div class="row">
-       <c:forEach begin="0" end="5" varStatus="loop">
+      <%--  <c:forEach begin="0" end="5" varStatus="loop"> --%>
+      <c:forEach items="${products}" var="dto" varStatus="loop">
             <div class="col-md-3 mb-5"> <%-- 한 행에 4개의 열을 가지도록 지정 --%>
                 <div class="card" style="width: 250px;">
                     <%-- 이미지 소스와 기타 제품 정보를 동적으로 표시 --%>
                    <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/b7d9211c-26e7-431a-ac24-b0540fb3c00f/%EC%97%90%EC%96%B4-%ED%8F%AC%EC%8A%A4-1-07-%EB%82%A8%EC%84%B1-%EC%8B%A0%EB%B0%9C-TttlGpDb.png"
                     class="card-img-top" alt="..." style="height: 300px;">
                     <div class="card-body">
-                        <h5 class="card-title">제품명</h5>
+                        <h5 class="card-title">${dto.name}</h5>
                         <p class="card-text" align="left">
                             <%-- 기타 제품 정보를 동적으로 표시 --%>
-                            제품코드 : ? <br>브랜드 : ?<br>색상 : ?<br>가격 : ?<br>사이즈
-                            : ?<br>남은 재고 : ?
+                            제품코드 : ${dto.code } <br>브랜드 : ${dto.brand }<br>색상 : ${dto.color}<br>가격 : ${dto.price }<br>사이즈
+                            : ${dto.size}<br>남은 재고 : ${dto.qty}
                         </p>
                     </div>
                 </div>

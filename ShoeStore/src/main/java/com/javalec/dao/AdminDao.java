@@ -21,7 +21,7 @@ public class AdminDao {
 	public AdminDao() {
 		try {	
 			Context context = new InitialContext();
-			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/mvc");
+			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/semi2jo");
 
 		}catch(Exception e) {
 			e.printStackTrace();
