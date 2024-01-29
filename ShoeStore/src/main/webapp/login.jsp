@@ -76,7 +76,7 @@
 			
 			//정규식 
 			let regExpId = /[A-Za-z0-9]{3,}/;
-			let regExpPw = /^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,100}$/;
+			let regExpPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,100}$/;
 			
 			let form = document.Member;
 			
@@ -132,7 +132,6 @@
     <button class="w-100 btn btn-lg btn-primary btn-log-in" type="submit">로그인</button><br>
   </form>
   <form action="/signUpForm.do">
-  <br>
 	<button class="w-100 btn btn-lg btn-primary btn-sign-up" type="submit">회원가입</button>
           <p class="mt-5 mb-3 text-muted">&copy; 2024</p>
   </form>
