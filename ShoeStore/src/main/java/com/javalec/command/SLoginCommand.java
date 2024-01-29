@@ -1,7 +1,5 @@
 package com.javalec.command;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,37 +7,27 @@ import com.javalec.dao.LoginDao;
 
 public class SLoginCommand implements SCommand {
 
-	@Override
-	public void execute(HttpServletRequest reqeust, HttpServletResponse response) {
-		
-		String id = reqeust.getParameter("id");
-		String pw = reqeust.getParameter("pw");
-		
-		LoginDao dao = new LoginDao();
-		boolean loginSuccess = dao.validateUser(id, pw);
-		
-        // 로그인 성공 시 알람창을 표시
-		if (loginSuccess) {
-            try {
-                response.setContentType("text/html; charset=UTF-8");
-                PrintWriter out = response.getWriter();
-                out.println("<script>alert('로그인에 성공했습니다.');</script>");
-                out.flush();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            // 로그인 실패 시 알람창을 표시
-            try {
-                response.setContentType("text/html; charset=UTF-8");
-                PrintWriter out = response.getWriter();
-                out.println("<script>alert('로그인에 실패했습니다.');</script>");
-                out.flush();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+    @Override
+    public void execute(HttpServletRequest request, HttpServletResponse response) {
 
-	}
+        String id = request.getParameter("id");
+        String pw = request.getParameter("pw");
 
+        LoginDao dao = new LoginDao();
+        boolean loginAdminResult = dao.validateAdmin(id, pw);
+        boolean loginCustomerResult = dao.validateUser(id, pw);
+
+        response.setContentType("text/html; charset=UTF-8");
+
+        if (loginAdminResult) {
+		    request.setAttribute("loginResult", "admin");
+		} else if (loginCustomerResult) {
+		    request.setAttribute("loginResult", "success");
+		} else {
+		    request.setAttribute("loginResult", "fail");
+
+		}
+		// 로그인 결과를 확인하기 위해 출력문 추가
+		System.out.println("loginResult: " + request.getAttribute("loginResult"));
+    }  
 }
