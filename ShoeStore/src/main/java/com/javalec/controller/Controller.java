@@ -60,25 +60,10 @@ public class Controller extends HttpServlet {
 				viewPage = "login.jsp";
 				break;
 			
-			// 로그인 성공 시 처리 (product.jsp로 이동)
+			// 로그인 Command 이동
 			case "/login.do":
 	            command = new SLoginCommand();
-	            command.execute(request, response);
-	           
-	            // 로그인 성공 여부 확인
-	            String loginResult = (String) request.getAttribute("loginResult");
-	            System.out.println("loginResult" + loginResult);
-	            	          
-	            // 로그인 성공 시 viewPage 설정
-	            if ("success".equals(loginResult)) {
-	            	viewPage = "/shoesList.do";  // 로그인 성공
-	            	
-	            } else if ("admin".equals(loginResult)) {
-	            	viewPage = "/loadProducts.do";   // 관리자 로그인 성공
-	            	
-	            } else {
-	            	viewPage = "/list.do";    // 로그인 실패
-	            }
+	            command.execute(request, response);	      
 	            break;
 	           
 			case "/shoesList.do" :
