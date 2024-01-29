@@ -33,6 +33,37 @@
 	 font-family: 'Single Day', cursive;
 	 font-size : 80px;
 	 }
+	 
+	 /* "회원가입" 버튼의 색상을 변경하는 스타일 추가 */
+	.btn-log-in {
+	    background-color: #FF0000;
+	    /* 버튼에 대한 다른 스타일도 필요한 경우 추가하세요 */
+	    color: #fff; /* 텍스트 색상 */
+	    border-color: #FF0000; /* 테두리 색상 */
+	}
+	
+	/* "회원가입" 버튼에 스타일 적용 */
+	.w-100.btn.btn-lg.btn-primary-log-in {
+	    background-color: #FF0000;
+	    color: #fff;
+	    border-color: #FF0000;
+	}
+	 
+	/* "회원가입" 버튼의 색상을 변경하는 스타일 추가 */
+	.btn-sign-up {
+	    background-color: #808080;
+	    /* 버튼에 대한 다른 스타일도 필요한 경우 추가하세요 */
+	    color: #fff; /* 텍스트 색상 */
+	    border-color: #808080; /* 테두리 색상 */
+	}
+	
+	/* "회원가입" 버튼에 스타일 적용 */
+	.w-100.btn.btn-lg.btn-primary-sign-up {
+	    background-color: #808080;
+	    color: #fff;
+	    border-color: #808080;
+	}
+	 
     </style>
     <!-- Custom styles for this template -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,8 +75,8 @@
 		function checkMember() {
 			
 			//정규식 
-			let regExpId = /^[a-z][a-zA-Z0-9]{3,11}$/;
-			let regExpPw = /^[a-zA-Z0-9]{4,12}$/;
+			let regExpId = /[A-Za-z0-9]{3,}/;
+			let regExpPw = /^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,100}$/;
 			
 			let form = document.Member;
 			
@@ -59,7 +90,7 @@
 				return false;
 			}
 			if(!regExpId.test(id)){
-				alert("아이디는 영문자로 시작하고, 4~12자리여야 합니다.");
+				alert("아이디는 영문자로 시작하고, 3자리 이상이여야 합니다.");
 				form.id.select();
 				return false	;
 			}
@@ -69,7 +100,7 @@
 				return false;
 			}
 			if(!regExpPw.test(pw)){
-				alert("비밀번호는 4~12자리의 영문과 숫자 조합이어야 합니다.");
+				alert("비밀번호는 영문 대소문자, 숫자, 특수문자 중 하나 이상 포함하여야 하고 8~100자까지 작성할 수 있습니다.");
 				form.pw.select();
 				return false	;
 			}			
@@ -98,13 +129,14 @@
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div>-->
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2024</p>
+    <button class="w-100 btn btn-lg btn-primary btn-log-in" type="submit">로그인</button><br>
+  </form>
+  <form action="/signUpForm.do">
+  <br>
+	<button class="w-100 btn btn-lg btn-primary btn-sign-up" type="submit">회원가입</button>
+          <p class="mt-5 mb-3 text-muted">&copy; 2024</p>
   </form>
 </main>
-
-
-    
   </body>
 </html>
 
