@@ -6,14 +6,18 @@ public class SListDto {
 	
 	int code;
 	String brand;
-	String Kbrand;
+	String kbrand;
 	String name;
-	String Kname;
+	String kname;
 	String color;
 	String price;
 	int size;
 	int qty;
 	String image;
+	String description;
+	String metarial;
+	String company;
+	String madein;
 	
 	public SListDto() {
 		// TODO Auto-generated constructor stub
@@ -23,20 +27,41 @@ public class SListDto {
 		super();
 		this.image = image;
 	}
+	
+	public SListDto(int size) {
+		super();
+		this.size = size;
+	}
 
-	public SListDto(int code, String brand, String kbrand, String name, String Kname, String color, String price,
-			int size, int qty, String image) {
+	public SListDto(int code, String brand, String kbrand, String name, String kname, String color, String price,
+			int qty, String image) {
 		super();
 		this.code = code;
 		this.brand = brand;
-		this.Kbrand = kbrand;
+		this.kbrand = kbrand;
 		this.name = name;
-		this.Kname = Kname;
+		this.kname = kname;
 		this.color = color;
 		this.price = price;
-		this.size = size;
 		this.qty = qty;
 		this.image = image;
+	}
+	
+	public SListDto(int code, String brand, String kbrand, String name, String kname, String color, String price,
+			int qty, String description, String metarial, String company, String madein) {
+		super();
+		this.code = code;
+		this.brand = brand;
+		this.kbrand = kbrand;
+		this.name = name;
+		this.kname = kname;
+		this.color = color;
+		this.price = price;
+		this.qty = qty;
+		this.description = description;
+		this.metarial = metarial;
+		this.company = company;
+		this.madein = madein;
 	}
 
 	public int getCode() {
@@ -56,11 +81,11 @@ public class SListDto {
 	}
 
 	public String getKbrand() {
-		return Kbrand;
+		return kbrand;
 	}
 
 	public void setKbrand(String kbrand) {
-		Kbrand = kbrand;
+		this.kbrand = kbrand;
 	}
 
 	public String getName() {
@@ -72,11 +97,11 @@ public class SListDto {
 	}
 
 	public String getKname() {
-		return Kname;
+		return kname;
 	}
 
-	public void setKname(String Kname) {
-		this.Kname = Kname;
+	public void setKname(String kname) {
+		this.kname = kname;
 	}
 
 	public String getColor() {
@@ -118,4 +143,37 @@ public class SListDto {
 	public void setImage(String image) {
 		this.image = image;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getMetarial() {
+		return metarial;
+	}
+
+	public void setMetarial(String metarial) {
+		this.metarial = metarial;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public String getMadein() {
+		return madein;
+	}
+
+	public void setMadein(String madein) {
+		this.madein = madein;
+	}
+
 }
