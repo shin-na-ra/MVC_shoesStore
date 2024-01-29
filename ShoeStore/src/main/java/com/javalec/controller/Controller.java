@@ -14,8 +14,9 @@ import com.javalec.command.SCommand;
 import com.javalec.command.SLoginCommand;
 import com.javalec.command.SListCommand;
 import com.javalec.command.SLoadProductCommand;
-import com.javalec.command.SPayCommand;
 import com.javalec.command.SSignUpCommand;
+import com.javalec.command.SPurchaseCommand;
+import com.javalec.command.SPurchaseViewCommand;
 
 /**
  * Servlet implementation class Controller
@@ -47,7 +48,8 @@ public class Controller extends HttpServlet {
 	}
 	
 	public void actionDo (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("actionDo");
+		
+		request.setCharacterEncoding("utf-8");
 		
 		HttpSession session = request.getSession();
 		
@@ -57,9 +59,6 @@ public class Controller extends HttpServlet {
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
-		
-		System.out.println(com);
-		
 		
 		switch(com) {
 
@@ -90,26 +89,24 @@ public class Controller extends HttpServlet {
 			case "/shoesList.do" :
 				command = new SListCommand();
 				command.execute(request, response);
+				session.setAttribute("id", "hwicoding");
 				
 				viewPage = "product.jsp";
 				break;
 				
-			case "/pay_view.do" :
+			case "/purchase_view.do" :
 				// session을 통해 클릭한 신발의 code key를 보내기
 				String code = request.getParameter("code");
 				session.setAttribute("code", code);
 				
-				command = new SPayCommand();
-				command.execute(request, response);
-				// test용
-				command = new SListCommand();
+				command = new SPurchaseViewCommand();
 				command.execute(request, response);
 				
 				viewPage = "pay.jsp";   
 				
 				viewPage = "purchase.jsp";
 				
-				// 회원가입 폼 (signup.jsp로 이동)
+			// 회원가입 폼 (signup.jsp로 이동)
 			case "/signUpForm.do":
 				viewPage = "signup.jsp";
 				break;
@@ -126,6 +123,23 @@ public class Controller extends HttpServlet {
 				command.execute(request, response);
 				
 				viewPage = "AdminPage.jsp";
+				break;
+				
+			case "/purchase.do" :
+				command = new SPurchaseCommand();
+				command.execute(request, response);
+				
+				viewPage = "shoesList.do";
+				break;
+				
+			case "/search.do" :
+			    String input = request.getParameter("searchInput");
+			    System.out.println(input);
+				
+				command = new SListCommand();
+				command.execute(request, response);
+				
+				viewPage = "shoesList.do";
 				break;
 				
 			default :
