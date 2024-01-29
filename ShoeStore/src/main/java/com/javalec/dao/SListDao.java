@@ -423,26 +423,30 @@ public class SListDao {
 		try {
 			con = dataSource.getConnection();
 			
-				String product_sizeQuery = "select qty from product_size where product_code = ? and size = ?";
-				
-				ps = con.prepareStatement(product_sizeQuery);
-				
-				ps.setInt(1, code);
-				ps.setInt(2, hiddenSize);
-				
-				rs = ps.executeQuery();
-				
-				if (rs.next()) {
-					product_sizeQty = rs.getInt(1);
-				}
+			String product_sizeQuery = "select qty from product_size where product_code = ? and size = ?";
 			
-			String updateQuery = "update product_size set where product_code = ? and size = ? qty = ?";
-			
-			ps = con.prepareStatement(updateQuery);
+			ps = con.prepareStatement(product_sizeQuery);
 			
 			ps.setInt(1, code);
 			ps.setInt(2, hiddenSize);
-			ps.setInt(3, product_sizeQty - 1);
+			
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				product_sizeQty = rs.getInt(1);
+			}
+			
+			String updateQuery = "update product_size set qty = ? where product_code = ? and size = ?";
+			
+			System.out.println(product_sizeQty + " 수량");
+			System.out.println(code + " 코드");
+			System.out.println(hiddenSize + " 사이즈");
+			
+			ps = con.prepareStatement(updateQuery);
+			
+			ps.setInt(1, (product_sizeQty - 1));
+			ps.setInt(2, code);
+			ps.setInt(3, hiddenSize);
 			
 			ps.executeUpdate();
 		}
