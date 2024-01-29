@@ -63,7 +63,8 @@ public class Controller extends HttpServlet {
 			// 로그인 Command 이동
 			case "/login.do":
 	            command = new SLoginCommand();
-	            command.execute(request, response);	      
+	            command.execute(request, response);	     
+	            viewPage = "alert.jsp";
 	            break;
 	           
 			case "/shoesList.do" :
