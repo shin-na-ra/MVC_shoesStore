@@ -34,7 +34,7 @@ public class SListDto {
 	}
 
 	public SListDto(int code, String brand, String kbrand, String name, String kname, String color, String price,
-			int size, int qty, String image) {
+			int qty, String image) {
 		super();
 		this.code = code;
 		this.brand = brand;
@@ -43,13 +43,12 @@ public class SListDto {
 		this.kname = kname;
 		this.color = color;
 		this.price = price;
-		this.size = size;
 		this.qty = qty;
 		this.image = image;
 	}
 	
 	public SListDto(int code, String brand, String kbrand, String name, String kname, String color, String price,
-			int size, int qty, String description, String metarial, String company, String madein) {
+			int qty, String description, String metarial, String company, String madein) {
 		super();
 		this.code = code;
 		this.brand = brand;
@@ -58,7 +57,6 @@ public class SListDto {
 		this.kname = kname;
 		this.color = color;
 		this.price = price;
-		this.size = size;
 		this.qty = qty;
 		this.description = description;
 		this.metarial = metarial;

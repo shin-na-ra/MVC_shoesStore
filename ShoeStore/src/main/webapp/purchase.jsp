@@ -102,7 +102,7 @@
 <header>
   <div class="navbar navbar-dark bg-dark shadow-sm">
 	  <div class="container d-flex justify-content-between">
-	    <a href="shoesList.do" class="navbar-brand">
+	    <a href="shoesList.do" class="navbar-brand" style="font-size:30px">
 	      <strong>E Shoe</strong>
 	    </a>
   </div>
@@ -123,21 +123,15 @@
 	    // 클릭 시 배경화면 색상 설정
 	    button.style.backgroundColor = 'white';
 	    button.style.border = '1px solid black'; // Set border and color
+	    
+	    document.getElementById("hiddenSize").value = button.value;
+	}
 	
-	    // Update the hidden input with the selected size
-	    document.getElementById('selectedSize').value = button.value;
-		    
-	    /* $.ajax({
-	        type: "POST",
-	        url: "/*.do", // Replace with the actual URL
-	        data: { size: button.value },
-	        success: function(response) {
-	            // Handle the server response if needed
-	        },
-	        error: function() {
-	            // Handle errors if necessary
-	        }
-	    }); */
+	function sendSize() {
+		
+		var s = document.buy;
+		
+		s.submit();
 	}
 	
 	function validateForm() {
@@ -168,7 +162,7 @@
 								<c:forEach items="${imageList}" var="images">
 									<div class="col">
 										<div class="card shadow-sm"
-											style="width: 516px; height: 645px; margin-left: 100px;">
+											style="width: 516px; height: 645px; margin-left: 30%;">
 											<svg class="bd-placeholder-img card-img-top" width="100%"
 												height="0px" xmlns="http://www.w3.org/2000/svg" role="img"
 												aria-label="Placeholder: Thumbnail"
@@ -199,19 +193,22 @@
 							<br>
 							<div class="dtl-price-wrap">
 								<dl class="dtl-price">
-									<dt>₩ ${info.price}</dt>
+									<div class="dtl-price__discount">
+										<dt>₩ ${info.price}</dt>
+									</div>
 								</dl>
 							</div>
 						</div>
 						<br>
 						<br>
+						<form action="purchase.do" method="post" name="buy" onsubmit="return validateForm()">
 							<div class="l-grid__row" data-ui-type="Detail_Item_Option">
 								<section>
 									<h3>SIZE</h3>
 									<div class="c-chip-input">
 										<!-- 신발 사이즈 shoesSize로부터 불러온다 -->
 										<c:forEach items="${shoesSize}" var="shoeSize">
-											   <input class="c-chip" type="button" id="${shoeSize.size}" 
+											   <input class="c-chip" type="button" id="size" 
 											       name="size" value="${shoeSize.size}" onclick="selectSize(this)">
 										</c:forEach> 
 									</div>
@@ -221,15 +218,14 @@
 								<br>
 								<div class="btm-drawer open">
 						        	<div class="c-btn_wrap" align="left">
-						        		<form action="purchase.do" method="post">
-							                <!-- size 넘기기 위한 히든 인풋 -->
-							                <input type="hidden" class="selectedSize">
-							                <!-- 보이는 버튼 -->
-							                <input type="submit" class="c-button__primary" value="BUY NOW">
-						                </form>						            
+						                <!-- size 넘기기 위한 히든 인풋 -->
+						                <input type="hidden" class="c-button__hide" name="hiddenSize" id="hiddenSize">
+						                <!-- 보이는 버튼 -->
+						                <input type="button" class="c-button__primary" value="BUY NOW" onclick="sendSize()">
 							        </div>
 							    </div>
 							</div>
+						</form>
 						<br>
 						<br>
 						<div class="l-grid__row" data-ui-type="Detail_Item_Description">

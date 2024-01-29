@@ -46,6 +46,8 @@ public class Controller extends HttpServlet {
 	
 	public void actionDo (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("utf-8");
+		
 		HttpSession session = request.getSession();
 		
 		SCommand command = null;
@@ -64,7 +66,7 @@ public class Controller extends HttpServlet {
 			case "/shoesList.do" :
 				command = new SListCommand();
 				command.execute(request, response);
-				session.setAttribute("id", "admin");
+				session.setAttribute("id", "hwicoding");
 				
 				viewPage = "product.jsp";
 				break;
@@ -82,8 +84,17 @@ public class Controller extends HttpServlet {
 				break;
 				
 			case "/purchase.do" :
-				System.out.println(session.getAttribute("size"));
 				command = new SPurchaseCommand();
+				command.execute(request, response);
+				
+				viewPage = "shoesList.do";
+				break;
+				
+			case "/search.do" :
+			    String input = request.getParameter("searchInput");
+			    System.out.println(input);
+				
+				command = new SListCommand();
 				command.execute(request, response);
 				
 				viewPage = "shoesList.do";

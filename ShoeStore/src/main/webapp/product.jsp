@@ -57,13 +57,15 @@
   </div>
   <div class="navbar navbar-dark bg-dark shadow-sm">
 	  <div class="container d-flex justify-content-between">
-	    <a href="#" class="navbar-brand">
+	    <a href="shoesList.do" class="navbar-brand" style="font-size:30px">
 	      <strong>E Shoe</strong>
 	    </a>
 	    <div class="input-group" style="width: 22%; text-align: left;">
-		  <input id="searchInput" class="form-control" type="search" placeholder="Search" aria-label="Search" style="font-size: 14px;">
-		  <!-- 검색을 클릭하면 밑에 script로 이동 -->
-		  <button onclick="searchShoes()" class="btn btn-outline-success" style="background-color: #000000; border-color: #000000; color: #FFFFFF; font-size: 15px">검색</button>
+	    	<form action="search.do" method="post" name="searchAction">
+			    <input id="searchInput" name="searchInput" class="form-control" type="search" placeholder="Search" aria-label="Search" style="font-size: 14px;">
+		    </form>
+			    <!-- 검색을 클릭하면 밑에 script로 이동 -->
+			    <button type="button" onclick="searchShoes()" class="btn btn-outline-success" style="background-color: #000000; border-color: #000000; color: #FFFFFF; font-size: 15px">검색</button>
 		</div>
   </div>
 </div>
@@ -71,37 +73,11 @@
 
 <script>
 	function searchShoes() {
-		
-		//검색한 내용을 소문자로 가져오기 
-   	 	var searchInput = document.querySelector(".form-control").value.toLowerCase();
-		
-		//가지고 있는 제품 가져오기
-		var cards = document.getElementsByClassName('card-container')[0].children;
-		
-		// 저장할 검색 내용이 여러개일 경우를 위해 array 리스트 하나 만든다.
-	    var matchingCards = [];
-		
-		for (var i = 0; i < cards.length; i++) {
-			var cardText = cards[i].innerText.toLowerCase();
-			 
-			// Check if the card text contains the search input
-	        if (cardText.includes(searchInput)) {
-            matchingCards.push(cards[i]);
-	        }
-		}
-		
-		// 존재하는 제품들을 클리어 시키기
-	    var cardContainer = document.getElementsByClassName('card-container')[0];
-	    cardContainer.innerHTML = '';
-	    
-	 	// 저장했던 리스트를 불러온다.
-	    for (var j = 0; j < matchingCards.length; j++) {
-	        cardContainer.appendChild(matchingCards[j]);
-	        // 출력
-	        matchingCards[j].style.display = 'flex';
-	    }
-		
-	}
+	  	var search = document.searchAction;
+	  		  
+	  	search.submit();
+	  }
+	  
 	<!-- JavaScript function to submit the form -->
     function submitForm(code) {
         // hidden으로 되어 있는 codeInput에 데이터를 넘겨주며
@@ -126,8 +102,8 @@
 	    <div class="row row-cols-1 row-cols-md-3 g-4" >
 	    <!-- 모든 제품들을 출력 -->
 	      <c:forEach items="${shoesList}" var="dto">
-	      	<input type="hidden" id="Kbrand" value="${dto.kbrand}">
-	      	<input type="hidden" id="Kname" value="${dto.kname}">
+	      	<%-- <input type="hidden" id="Kbrand" value="${dto.kbrand}">
+	      	<input type="hidden" id="Kname" value="${dto.kname}"> --%>
 	        <div class="col">
 	        	<!-- 카드 클릭 시 function submitForm(dto.code) 코드를 넘겨준다. -->
 	            <a href="#" onclick="submitForm('${dto.code}');" style="text-decoration: none;">
