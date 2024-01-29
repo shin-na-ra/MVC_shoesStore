@@ -15,76 +15,81 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="styles.css">
 </head>
-
+<%
+	String configPath = application.getRealPath("/file");
+	session.setAttribute("configPath", configPath);
+%>
 <script>
-    function formatNumber(value) {
-        // 숫자만 추출
-        let number = parseFloat(value.replace(/,/g, ''));
-        // 3자리마다 쉼표 추가
-        let formattedNumber = number.toLocaleString();
-        // 입력값 업데이트
-        if (!isNaN(number)){
-	        document.registerForm.price.value = formattedNumber;
-        }
-    }
-    
-    function checkInput() {
+	function formatNumber(value) {
+		// 숫자만 추출
+		let number = parseFloat(value.replace(/,/g, ''));
+		// 3자리마다 쉼표 추가
+		let formattedNumber = number.toLocaleString();
+		// 입력값 업데이트
+		if (!isNaN(number)) {
+			document.registerForm.price.value = formattedNumber;
+		}
+	}
+
+	function checkInput() {
 		let regExpPrice = /^[0-9,]+$/;
-		
+
 		let form = document.registerForm;
-		
+
 		let name = form.name.value;
 		let price = form.price.value;
 		let brand = form.brand.value;
 		let color = form.color.value;
 		let qty = form.qty.value;
-		
-		if(brand == "unselecte"){
+
+		if (brand == "unselecte") {
 			alert("브랜드를 선택해 주세요.")
 			form.brand.select()
 			return
+
 		}
-			
-		if(name == ""){
+
+		if (name == "") {
 			alert("이름을 입력해 주세요.")
 			form.name.select()
 			return
+
 		}
-		
-		if(color == "unselecte"){
+
+		if (color == "unselecte") {
 			alert("색상을 선택해 주세요.")
 			form.brand.select()
 			return
+
 		}
-		
-		if(price == ""){
+
+		if (price == "") {
 			alert("가격을 입력해 주세요.")
 			form.price.select()
 			return
+
 		}
-		
-		if(!regExpPrice.test(price)) {
+
+		if (!regExpPrice.test(price)) {
 			alert("가격은 숫자만 입력 가능합니다.")
 			form.price.select()
 			return
+
 		}
-		
-		if(qty == "unselecte"){
+
+		if (qty == "unselecte") {
 			alert("수량을 선택해 주세요.")
 			form.qty.select()
 			return
+
 		}
 		
 		form.submit();
-		
-    }
-    
-    function upload() {
-		let form = document.uploadButton;
-		form.submit();
+
 	}
+
 </script>
- 	
+
 <body>
 
 	<!-- Nav 설정 -->
@@ -100,102 +105,134 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<!-- 좌측에 카드 배치 -->
-				<div class="card-body"
-					style="margin-left: 100px; width: 400px; height: 500px;">
-					<img
-						src="<%=(String)session.getAttribute("imagePath") %>"
-						class="card-img-top" alt="이미지11111111111111111111111">
+				<div class="additional-text ml-md-auto">
+					<form action="update.do" name="registerForm" method="post" enctype="multipart/form-data">
+						<div class="form-floating" style="margin-left: 20px;">
+							<input type="file" name="image1" class="form-control"
+								id="fileInput" accept="image/*"
+								style="width: 500px; height: 60px; margin-bottom: 25px"> 
+								<label for="fileInput">메인 사진 업로드</label>
+						</div>
+						<!-- <div class="form-floating" style="margin-left: 20px;">
+							<input type="file" name="image2" class="form-control"
+								id="fileInput" accept="image/*"
+								style="width: 500px; height: 60px; margin-bottom: 25px">
+								<label for="fileInput">사진 업로드</label>
+						</div>
+						<div class="form-floating" style="margin-left: 20px;">
+							<input type="file" name="image3" class="form-control"
+								id="fileInput" accept="image/*"
+								style="width: 500px; height: 60px; margin-bottom: 26px"> 
+								<label for="fileInput">사진 업로드</label>
+						</div> -->
+						<div class="form-floating" style="margin-left: 21px;">
+							<label for="descriptionInput">상세 설명</label>
+							<textarea name="description" class="form-control" id="descriptionInput"
+								style="width: 500px; height: 411px; font-size: 20px; padding-top: 60px;"></textarea>
+						</div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<!-- 우측에 추가 텍스트 배치 -->
 				<div class="additional-text ml-md-auto">
-					<form action="update.do" name="registerForm" method="post" enctype="multipart/form-data">
-							<div class="form-floating"> 
+						<div class="form-floating">
 							<!-- 브랜드 선택 combobox -->
 							<select class="form-select" id="floatingSelect" name="brand"
-							style="font-size: 20px; height: 60px; width: 450px">
-								<option value="unselecte">선택</option> 
-								<option value="Newbalance">Newbalance</option>
-								<option value="Nike">Nike</option>
-								<option value="Adidas">Adidas</option>
-								<option value="Vans">Vans</option>
-							</select>
-							<label for="floatingSelect">브랜드 선택</label>
-							</div>
-						<br><br>
+								style="font-size: 20px; height: 60px; width: 450px">
+								<option value="unselecte">선택</option>
+								<option value="NEW BALANCE">NEW BALANCE</option>
+								<option value="NIKE">NIKE</option>
+								<option value="ADIDAS">ADIDAS</option>
+								<option value="VANS">VANS</option>
+							</select> <label for="floatingSelect">브랜드 선택</label>
+						</div>
+						<br>
 						<!-- 이름 입력 text -->
 						<div class="form-floating">
-						<input type="text" name="name" class="form-control" id="priceInputValue"
-						 style="width: 300px;  height: 65px; font-size: 20px; padding-right: 7px; ">
-						 <label for="priceInputValue">이름</label>
- 							</div>
- 						<br><br>
-							<!-- 색상 선택 combobox -->
-						<div class="form-floating"> 
-							<select name="color" class="form-select" id="floatingSelect" 
-							style="height: 65px; width: 450px; font-size: 20px;">
-								<option value="unselecte">선택</option> 
-								<option value="Black">Black</option>
-								<option value="White">White</option>
-								<option value="Blue">Blue</option>
-								<option value="Red">Red</option>
-							</select>
-							<label for="floatingSelect">색상 선택</label>
+							<input type="text" name="name" class="form-control"
+								id="priceInputValue"
+								style="width: 300px; height: 65px; font-size: 20px; padding-right: 7px;">
+							<label for="priceInputValue">이름</label>
 						</div>
-						<br><br>
+						<br>
+						<!-- 색상 선택 combobox -->
+						<div class="form-floating">
+								<input type="text" name="color" class="form-control" id="sizeInput"
+								style="height: 60px; width: 450px; font-size: 20px;">
+								<label for="sizeInput">색상 입력</label>
+						</div>
+						<br>
+						<div class="form-floating">
+							<input type="text" class="form-control" name="size"
+								id="sizeInput"
+								style="width: 200px; height: 60px; font-size: 20px; padding-right: 7px;">
+							<label for="sizeInput">사이즈 입력</label>
+						</div>
+						<br>
 						<!-- 가격 입력 text -->
-							<div class="form-floating">
-							<input type="text" class="form-control" name="price" id="priceInputValue" oninput="formatNumber(this.value)"
-							 style="width: 200px; height: 60px; font-size: 20px; padding-right: 7px;">
-							 <label for="priceInputValue">가격(원)</label>
-  							</div>
-  							<br><br>
-  							<!-- 수량 선택 combobox -->
+						<div class="form-floating">
+							<input type="text" class="form-control" name="price"
+								id="priceInputValue" oninput="formatNumber(this.value)"
+								style="width: 200px; height: 60px; font-size: 20px; padding-right: 7px;">
+							<label for="priceInputValue">가격(원)</label>
+						</div>
+						<br>
+						<!-- 수량 선택 combobox -->
 						<div class="form-floating">
 							<select name="qty" class="form-select" id="floatingSelect"
-							 style="width: 150px; height:40px; padding-right: 5px; font-size: 17px;">
-							 	<option value="unselecte" selected="selected">선택</option> 
+								style="width: 150px; height: 40px; padding-right: 5px; font-size: 17px;">
+								<option value="unselecte" selected="selected">선택</option>
 								<c:forEach var="i" begin="1" end="50">
 									<option value="${i}">${i}</option>
 								</c:forEach>
-							</select>
-							<label for="floatingSelect">수량 선택(개)</label>
+							</select> <label for="floatingSelect">수량 선택(개)</label>
+						</div>
+						<br>
+						<div class="form-floating">
+							<input type="text" name="material" class="form-control"
+								id="materialInput"
+								style="width: 450px; height: 65px; font-size: 20px; padding-right: 7px;">
+							<label for="materialInput">소재</label>
+						</div>
+						<br>
+						<div class="form-floating">
+							<input type="text" name="company" class="form-control"
+								id="companyInput"
+								style="width: 450px; height: 65px; font-size: 20px; padding-right: 7px;">
+							<label for="companyInput">제조사</label>
+						</div>
+						<br>
+						<div class="form-floating">
+							<input type="text" name="madein" class="form-control"
+								id="madeinInput"
+								style="width: 400px; height: 65px; font-size: 20px; padding-right: 7px;">
+							<label for="madeinInput">제조국</label>
 						</div>
 				</div>
 			</div>
- 		</div>
- 			</form>
- 		<br>
- 		<form action="upload.do" name="uploadButton" enctype="multipart/form-data" method="post">
- 		 <div class="form-floating" style="margin-left: 45px;">
-        	<input type="file" name="image" class="form-control" id="fileInput" accept="image/*"
-        	style="width: 500px;" onclick="upload()">
-        <label for="fileInput">사진 업로드</label>
-    </div>
-    </form>
-	<br><br>
-	<div class="container text-center">
-		<div class="row">
-			<button type="button" class="btn btn-primary btn-lg mb-5"
-				onclick="checkInput()">제품 등록</button>
 		</div>
-	</div>
-
-	<footer class="text-muted py-5">
-		<div class="container">
-			<p class="float-end mb-1">
-				<a href="#">Back to top</a>
-			</p>
-			<p class="mb-1">Album example is &copy; Bootstrap, but please
-				download and customize it for yourself!</p>
-			<p class="mb-0">
-				New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
-					href="../getting-started/introduction/">getting started guide</a>.
-			</p>
+		</form>
+		<br> <br>
+		<br>
+		<div class="container text-center">
+			<div class="row">
+				<button type="button" class="btn btn-primary btn-lg mb-5"
+					onclick="checkInput()">제품 등록</button>
+			</div>
 		</div>
-	</footer>
 
+		<footer class="text-muted py-5">
+			<div class="container">
+				<p class="float-end mb-1">
+					<a href="#">Back to top</a>
+				</p>
+				<p class="mb-1">Album example is &copy; Bootstrap, but please
+					download and customize it for yourself!</p>
+				<p class="mb-0">
+					New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
+						href="../getting-started/introduction/">getting started guide</a>.
+				</p>
+			</div>
+		</footer>
 </body>
 </html>

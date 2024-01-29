@@ -14,14 +14,19 @@ public class SListCommand implements SCommand {
 	@Override
 	public void execute(HttpServletRequest reqeust, HttpServletResponse response) {
 		SListDao dao = new SListDao();
-		SListDto dto = new SListDto();
-		List<SListDto> dtos = dao.shoesList();
+		String input = reqeust.getParameter("searchInput");
 		
-		reqeust.setAttribute("shoesList", dtos);
-//		reqeust.setAttribute("brand", dto.getBrand());
-//		reqeust.setAttribute("Kbrand", dto.getKbrand());
-//		reqeust.setAttribute("name", dto.getName());
-//		reqeust.setAttribute("Kname", dto.getKname());
+		
+		if (input == null) {
+			List<SListDto> dtos = dao.shoesList();
+			
+			reqeust.setAttribute("shoesList", dtos);
+		}
+		else {
+			List<SListDto> dtos = dao.searchShoes(input);
+			
+			reqeust.setAttribute("shoesList", dtos);
+		}
 		
 	}
 	
