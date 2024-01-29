@@ -413,35 +413,16 @@ public class SListDao {
 	}
 	
 	// update
-	
 	public void updateQty(String id, int code, int hiddenSize) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
-		int purchaseQty = 0;
 		int product_sizeQty = 0;
 		
 		try {
 			con = dataSource.getConnection();
 			
-			try {
-				String purchaseQuery = "select sum(qty) from purchase where customer_id = ? and product_code = ?";
-				
-				ps = con.prepareStatement(purchaseQuery);
-				ps.setString(1, id);
-				ps.setInt(2, code);
-				
-				rs = ps.executeQuery();
-				
-				if (rs.next()) {
-					purchaseQty = rs.getInt(1);
-				}
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			try {
 				String product_sizeQuery = "select qty from product_size where product_code = ? and size = ?";
 				
 				ps = con.prepareStatement(product_sizeQuery);
@@ -454,25 +435,16 @@ public class SListDao {
 				if (rs.next()) {
 					product_sizeQty = rs.getInt(1);
 				}
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
 			
+			String updateQuery = "update product_size set where product_code = ? and size = ? qty = ?";
 			
-			try {
-				String updateQuery = "update product_size set where product_code = ? and size = ? qty = ?";
-				
-				ps = con.prepareStatement(updateQuery);
-				
-				ps.setInt(1, code);
-				ps.setInt(2, hiddenSize);
-				ps.setInt(3, product_sizeQty - purchaseQty);
-				
-				ps.executeUpdate();
-			}
-			catch (Exception e) {
-				e.printStackTrace();
-			}
+			ps = con.prepareStatement(updateQuery);
+			
+			ps.setInt(1, code);
+			ps.setInt(2, hiddenSize);
+			ps.setInt(3, product_sizeQty - 1);
+			
+			ps.executeUpdate();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -487,6 +459,5 @@ public class SListDao {
 				e.printStackTrace();
 			}
 		}
-		
 	}
 }
