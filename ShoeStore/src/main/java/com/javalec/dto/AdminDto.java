@@ -1,7 +1,5 @@
 package com.javalec.dto;
 
-import java.io.FileInputStream;
-
 public class AdminDto {
 	
 	// Field
@@ -11,12 +9,16 @@ public class AdminDto {
 	String color;
 	int price;
 	int size;
-	FileInputStream Image;
 	int qty;
+	String image;
+	String description;
+	String meterial;
+	String company;
+	String madein;
 	
 	// Constructor
-	public AdminDto(int code, String brand, String name, String color, int price, int size, FileInputStream image,
-			int qty) {
+	public AdminDto(int code, String brand, String name, String color, int price, int size, int qty, String image,
+			String description, String meterial, String company, String madein) {
 		super();
 		this.code = code;
 		this.brand = brand;
@@ -24,10 +26,25 @@ public class AdminDto {
 		this.color = color;
 		this.price = price;
 		this.size = size;
-		Image = image;
 		this.qty = qty;
+		this.image = image;
+		this.description = description;
+		this.meterial = meterial;
+		this.company = company;
+		this.madein = madein;
 	}
-
+	
+	public AdminDto(int code, String brand, String name, String color, int price, int size, int qty, String image) {
+		super();
+		this.code = code;
+		this.brand = brand;
+		this.name = name;
+		this.color = color;
+		this.price = price;
+		this.size = size;
+		this.qty = qty;
+		this.image = image;
+	}
 	
 	// Method
 	public int getCode() {
@@ -78,12 +95,12 @@ public class AdminDto {
 		this.size = size;
 	}
 
-	public FileInputStream getImage() {
-		return Image;
+	public String getImage() {
+		return image;
 	}
 
-	public void setImage(FileInputStream image) {
-		Image = image;
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public int getQty() {
