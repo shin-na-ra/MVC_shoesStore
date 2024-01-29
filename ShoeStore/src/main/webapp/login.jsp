@@ -28,8 +28,16 @@
           font-size: 3.5rem;
         }
       }
+      
+      .title {
+	 font-family: 'Single Day', cursive;
+	 font-size : 80px;
+	 }
     </style>
     <!-- Custom styles for this template -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
     <link href="login.css" rel="stylesheet">
   </head>
   <script type="text/javascript">
@@ -73,8 +81,8 @@
     
 <main class="form-signin">
   <form action="login.do" name ="Member" onsubmit="return checkMember()" method="post">
-    <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">신발가게</h1>
+    <!--<img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">-->
+    <p class="title">E SHOE</p>
 
     <div class="form-floating">
       <input type="text" name="id" class="form-control" id="floatingInput" placeholder="아이디">
@@ -85,11 +93,11 @@
       <label for="floatingPassword">비밀번호</label>
     </div>
 
-    <div class="checkbox mb-3">
+    <!--<div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember-me"> Remember me
       </label>
-    </div>
+    </div>-->
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2024</p>
   </form>
