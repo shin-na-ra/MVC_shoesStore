@@ -29,15 +29,50 @@
         }
       }
     </style>
-
-    
     <!-- Custom styles for this template -->
     <link href="login.css" rel="stylesheet">
   </head>
+  <script type="text/javascript">
+		function checkMember() {
+			
+			//정규식 
+			let regExpId = /^[a-z][a-zA-Z0-9]{3,11}$/;
+			let regExpPw = /^[a-zA-Z0-9]{4,12}$/;
+			
+			let form = document.Member;
+			
+			let id = form.id.value;
+			let pw = form.pw.value;
+
+			
+			if(id === ""){
+				alert("아이디를 입력해 주세요.");
+				form.id.focus();
+				return false;
+			}
+			if(!regExpId.test(id)){
+				alert("아이디는 영문자로 시작하고, 4~12자리여야 합니다.");
+				form.id.select();
+				return false	;
+			}
+			if(pw === ""){
+				alert("비밀번호를 입력해 주세요.");
+				form.pw.focus();
+				return false;
+			}
+			if(!regExpPw.test(pw)){
+				alert("비밀번호는 4~12자리의 영문과 숫자 조합이어야 합니다.");
+				form.pw.select();
+				return false	;
+			}			
+			return true;	
+		}
+
+</script>
   <body class="text-center">
     
 <main class="form-signin">
-  <form action="login.do">
+  <form action="login.do" name ="Member" onsubmit="return checkMember()" method="post">
     <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">신발가게</h1>
 
@@ -48,15 +83,6 @@
     <div class="form-floating">
       <input type="password" name="pw"  class="form-control" id="floatingPassword" placeholder="비밀번호">
       <label for="floatingPassword">비밀번호</label>
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
-    <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
     </div>
 
     <div class="checkbox mb-3">
