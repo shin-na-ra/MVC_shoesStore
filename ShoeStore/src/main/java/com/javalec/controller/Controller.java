@@ -94,17 +94,6 @@ public class Controller extends HttpServlet {
 				viewPage = "product.jsp";
 				break;
 				
-			case "/purchase_view.do" :
-				// session을 통해 클릭한 신발의 code key를 보내기
-				String code = request.getParameter("code");
-				session.setAttribute("code", code);
-				
-				command = new SPurchaseViewCommand();
-				command.execute(request, response);
-				
-				viewPage = "pay.jsp";   
-				
-				viewPage = "purchase.jsp";
 				
 			// 회원가입 폼 (signup.jsp로 이동)
 			case "/signUpForm.do":
@@ -125,6 +114,19 @@ public class Controller extends HttpServlet {
 				viewPage = "AdminPage.jsp";
 				break;
 				
+				
+			case "/purchase_view.do" :
+				// session을 통해 클릭한 신발의 code key를 보내기
+				String code = request.getParameter("code");
+				session.setAttribute("code", code);
+				
+				command = new SPurchaseViewCommand();
+				command.execute(request, response);
+				
+				viewPage = "purchase.jsp";
+				
+				break;
+				
 			case "/purchase.do" :
 				command = new SPurchaseCommand();
 				command.execute(request, response);
@@ -140,7 +142,7 @@ public class Controller extends HttpServlet {
 				command.execute(request, response);
 				
 				viewPage = "shoesList.do";
-				break;
+				break;	
 				
 			default :
 				break;
