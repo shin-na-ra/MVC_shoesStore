@@ -13,7 +13,9 @@ import javax.servlet.http.HttpSession;
 import com.javalec.command.SCommand;
 import com.javalec.command.SLoginCommand;
 import com.javalec.command.SListCommand;
+import com.javalec.command.SLoadProductCommand;
 import com.javalec.command.SPayCommand;
+import com.javalec.command.SSignUpCommand;
 
 /**
  * Servlet implementation class Controller
@@ -112,6 +114,14 @@ public class Controller extends HttpServlet {
 				command.execute(request, response);
 				viewPage = "/list.do";
 				break;
+				
+			case "/loadProducts.do" :
+				command = new SLoadProductCommand();
+				command.execute(request, response);
+				
+				viewPage = "AdminPage.jsp";
+				break;
+				
 			default :
 				break;
 			
