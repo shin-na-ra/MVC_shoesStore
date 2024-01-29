@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>신발가게 : 로그인</title>
+    <title>E SHOE</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -63,6 +63,11 @@
 	    color: #fff;
 	    border-color: #808080;
 	}
+	
+	#loginBtn {
+ 	margin-bottom : 10px;
+	}
+	
 	 
     </style>
     <!-- Custom styles for this template -->
@@ -129,7 +134,7 @@
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div>-->
-    <button class="w-100 btn btn-lg btn-primary btn-log-in" type="submit">로그인</button><br>
+    <button class="w-100 btn btn-lg btn-primary btn-log-in" type="submit" id="loginBtn">로그인</button><br>
   </form>
   <form action="/signUpForm.do">
 	<button class="w-100 btn btn-lg btn-primary btn-sign-up" type="submit">회원가입</button>
