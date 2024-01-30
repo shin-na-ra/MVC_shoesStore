@@ -65,6 +65,14 @@
  	margin-bottom : 10px;
 	}
 	
+	/* 하이퍼링크에 밑줄 제거 스타일 추가 */
+      .title {
+        font-family: 'Single Day', cursive;
+        font-size: 80px;
+        text-decoration: none; /* 밑줄 제거 */
+        color: inherit; /* 기본 텍스트 색상 유지 */
+      }
+	
 	
     </style>
     <!-- Custom styles for this template -->
@@ -112,7 +120,7 @@
 <main class="form-signin">
   <form action="login.do" name ="Member" onsubmit="return checkMember()" method="post">
     <!--<img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">-->
-    <p class="title">E Shoe</p>
+    <a href="list.do" class="title">E Shoe</a>
     <div class="form-floating">
       <input type="text" name="id" class="form-control" id="floatingInput" placeholder="아이디">
       <label for="floatingInput">아이디</label>
