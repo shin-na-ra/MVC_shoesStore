@@ -75,6 +75,8 @@ public class Controller extends HttpServlet {
 			case "/shoesList.do" :
 				command = new SListCommand();
 				command.execute(request, response);
+				String userId = (String)session.getAttribute("id");
+				session.setAttribute("id", userId);
 				//session.setAttribute("id", "hwicoding");
 				viewPage = "product.jsp";
 				break;
