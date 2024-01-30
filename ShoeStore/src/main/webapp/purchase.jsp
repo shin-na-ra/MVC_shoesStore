@@ -11,19 +11,14 @@
 	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.88.1">
 <title>${name}</title>
-
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.1/examples/album/">
-
-
-
 <!-- Bootstrap core CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
-
 <style>
 .bd-placeholder-img {
 	font-size: 1.125rem;
@@ -32,7 +27,6 @@
 	-moz-user-select: none;
 	user-select: none;
 }
-
 /* 구매 버튼 */
 .c-button__primary {
 	display: inline-block;
@@ -46,16 +40,14 @@
 	cursor: pointer;
 	transition: background-color 0.3s ease;
 }
-
 /* 구매 버튼 마우스 가져다 됬을 때 */
 .c-button__primary:hover {
 	background-color: rgb(66, 66, 66, 0.5);
 	border: 2px solid #000;
 	border-radius: 3px;
 }
-
 /* 사이즈 버튼 */
-.c-chip {
+.c-chip, .c-chip1 {
 	display: inline-block;
 	padding: 10px 20px;
 	border: 1px solid #DCDCDC;
@@ -68,17 +60,14 @@
 	transition: background-color 0.3s ease;
 	margin: 5px 5px;
 }
-
 /* 사이즈 마우스 가져다 됬을 때 */
-.c-chip:hover {
+.c-chip:hover, .c-chip1:hover {
 	border: 1px solid #000;
 }
-
 /* 사이즈 버튼 활성화시 */
-.c-chip.active {
+.c-chip.active, .c-chip1.active {
 	border: 1px solid #000;
 }
-
 /* 상단 브랜드 네임 */
 .c-flag__item {
 	display: inline-block;
@@ -99,13 +88,11 @@
 	}
 }
 </style>
-
 </head>
 <body>
-
 	<header>
 		<nav class="navbar navbar-expand-lg"
-			style="background-color: #e3f2fd; height: 90px;">
+			style="background-color: #E3F2FD; height: 90px;">
 			<div class="container d-flex justify-content-between">
 				<a href="shoesList.do" class="navbar-brand" style="font-size: 30px">
 					<strong>E Shoe</strong>
@@ -128,60 +115,42 @@
 			</div>
 		</nav>
 	</header>
-
-
 	<!-- 사이즈 클릭 후 구매하기 버튼을 누르면 작동하는 함수 -->
 	<script>
-	
 		/* 검색을 위한 formaction */
 		function searchShoes() {
 			var search = document.searchAction;
-
 			search.submit();
 		}
-
 		function selectSize(button) {
-
-			
 			// 모든 버튼들 스타일 초기화
-			var buttons = document.querySelectorAll('.c-chip');
+			var buttons = document.querySelectorAll('.c-chip1');
 			buttons.forEach(function(btn) {
 				btn.style.backgroundColor = ''; // 배경 초기화
 				btn.style.border = ''; // 보더 초기화
 			});
-			
 			// 클릭 시 배경화면 색상 설정
 			button.style.backgroundColor = 'white';
 			button.style.border = '1px solid black'; // Set border and color
-
 			document.getElementById("hiddenSize").value = button.value;
 		}
-		
-		function alertSize() {
-	        alert("품절된 사이즈입니다.");
-
-	        var buttons = document.getElementById("soldoutSize");
-
-	        for (var i = 0; i < buttons.length; i++) {
-	            buttons[i].disabled = true;
-	        }
-	    }
-
+		function alertSize(event) {
+			event.preventDefault();
+			var button = event.target;
+			button.style.pointerEvents = "none";
+			button.style.opacity = "0.5";
+		}
 		/* 선택한 사이즈를 보내는 formaction */
 		function sendSize() {
 			alert("구매가 완료 되었습니다.");
 			var s = document.buy;
-
 			s.submit();
 		}
-
 	</script>
 	<c:forEach items="${shoesInfo}" var="info">
-
 		<main>
 			<div class="container-fluid">
 				<div class="row">
-
 					<!-- 이미지 불러오기 -->
 					<div class="col-md-6">
 						<div class="album py-5 bg-light">
@@ -196,9 +165,8 @@
 													height="0px" xmlns="http://www.w3.org/2000/svg" role="img"
 													aria-label="Placeholder: Thumbnail"
 													preserveAspectRatio="xMidYMid slice" focusable="false">
-                                            	<img src="${images.image}"
-														alt="Shoe Image">
-                                        	</svg>
+ <img src="${images.image}" alt="Shoe Image">
+ </svg>
 											</div>
 										</div>
 									</c:forEach>
@@ -206,7 +174,6 @@
 							</div>
 						</div>
 					</div>
-
 					<!-- information 불러오기-->
 					<div class="col-md-6">
 						<div class="sticky-container"
@@ -217,7 +184,7 @@
 							<div class="l-grid__row" data-ui-type="Detail_Item_Base">
 								<div class="dtl-title">
 									<div class="c-flag ">
-										<span class="c-flag__item  ">${info.brand}</span>
+										<span class="c-flag__item ">${info.brand}</span>
 									</div>
 									<h2>${info.name}</h2>
 									<span class="sub-txt">${info.kname}</span>
@@ -232,34 +199,30 @@
 								</div>
 							</div>
 							<br> <br>
-
 							<form action="purchase.do" method="post" name="buy">
 								<div class="l-grid__row" data-ui-type="Detail_Item_Option">
 									<section>
 										<h3>SIZE</h3>
 										<div class="c-chip-input">
-
 											<!-- 신발 사이즈 shoesSize로부터 불러온다 -->
 											<c:forEach items="${shoesSize}" var="shoeSize">
 												<c:choose>
 													<c:when test="${shoeSize.qty > 0}">
-														<input class="c-chip" type="button"
+														<input class="c-chip1" type="button"
 															id="size_${shoeSize.size}" name="size"
 															value="${shoeSize.size}" onclick="selectSize(this)">
 													</c:when>
 													<c:otherwise>
 														<input class="c-chip" type="button"
+															style="background-color: lightgray; color: white; opacity =0.5; pointer-events: none"
 															id="soldoutSize_${shoeSize.size}" name="soldoutSize"
-															value="${shoeSize.size}" onclick="alertSize()">
+															value="${shoeSize.size}" onclick="alertSize(event)">
 													</c:otherwise>
 												</c:choose>
 											</c:forEach>
-
 										</div>
 									</section>
-
 									<br>
-
 									<div class="btm-drawer open">
 										<div class="c-btn_wrap" align="left">
 											<!-- size 넘기기 위한 히든 인풋 -->
@@ -272,7 +235,6 @@
 									</div>
 								</div>
 							</form>
-
 							<br> <br>
 							<div class="l-grid__row" data-ui-type="Detail_Item_Description">
 								<section>
@@ -291,7 +253,6 @@
 									</ul>
 								</section>
 							</div>
-
 							<br> <br>
 							<div class="l-grid__row" data-ui-type="Detail_Item_Info">
 								<div class="c-accordion">
@@ -319,14 +280,9 @@
 			</div>
 		</main>
 	</c:forEach>
-
 	<footer class="text-muted py-5">
 		<jsp:include page="footer.jsp" flush="false" />
 	</footer>
-
-
 	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
-
 </body>
 </html>
