@@ -104,7 +104,7 @@
 										aria-label="Placeholder: Thumbnail"
 										preserveAspectRatio="xMidYMid slice" focusable="false">
 		                <title>Placeholder</title>
-		                <img src="${dto.image}" alt="Shoe Image">
+		                <img src="${pageContext.request.contextPath}/file/${dto.image}" alt="Shoe Image">
 		                <text x="50%" y="50%" fill="#eceeef" dy=".3em"
 											align="center" text-anchor="middle"
 											style="font-weight: bold;">${dto.brand}</text>

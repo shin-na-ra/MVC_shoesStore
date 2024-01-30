@@ -33,7 +33,7 @@
 
 	function checkInput() {
 		let regExpPrice = /^[0-9,]+$/;
-		let regExpColor = /^[가-힣a-zA-Z/]+$/;
+	/* 	let regExpColor = /^[가-힣|a-z|A-Z|0-9|/]+$/; */
 		let regExpSize = /^[0-9]+$/;
 		let regExpMaterial = /^[a-zA-Z가-힣0-9 %]+$/;
 		let regExpCompany = /^[a-zA-Z가-힣0-9 ]+$/;
@@ -70,7 +70,7 @@
 			return
 		}
 
-		if (color == "") {
+	/* 	if (color == "") {
 			alert("색상을 입력해 주세요.")
 			form.color.select()
 			return
@@ -80,7 +80,7 @@
 			alert("색상은 영문 및 한글만 입력 가능합니다.")
 			form.color.select()
 			return
-		}
+		} */
 		
 		if (size == "") {
 			alert("사이즈를 입력해 주세요.")
@@ -238,6 +238,7 @@
 							<option value="NIKE">NIKE</option>
 							<option value="ADIDAS">ADIDAS</option>
 							<option value="VANS">VANS</option>
+							<option value="CONVERSE">CONVERSE</option>
 						</select> <label for="floatingSelect">브랜드 선택</label>
 					</div>
 					<br>
