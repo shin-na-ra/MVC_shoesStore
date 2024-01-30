@@ -112,35 +112,35 @@ public class Customer {
 			this.userId = userId;
 			return this;
 		}
-		public CustomerBuilder password       (String password     ) {
+		public CustomerBuilder password(String password) {
 			this.password      = password;
 			return this;
 		}
-		public CustomerBuilder fullName       (String fullName     ) {
-			this.fullName      = fullName;
+		public CustomerBuilder fullName(String fullName) {
+			this.fullName = fullName;
 			return this;
 		}
-		public CustomerBuilder tel            (String tel          ) {
-			this.tel           = tel;
+		public CustomerBuilder tel(String tel) {
+			this.tel = tel;
 			return this;
 		}
-		public CustomerBuilder birth          (Instant birth        ) {
-			this.birth         = birth;
+		public CustomerBuilder birth(Instant birth ) {
+			this.birth = birth;
 			return this;
 		}
-		public CustomerBuilder gender         (Gender gender       ) {
-			this.gender        = gender;
+		public CustomerBuilder gender(Gender gender) {
+			this.gender = gender;
 			return this;
 		}
-		public CustomerBuilder email          (String email        ) {
-			this.email         = email;
+		public CustomerBuilder email(String email) {
+			this.email = email;
 			return this;
 		}
-		public CustomerBuilder address        (String address      ) {
-			this.address       = address;
+		public CustomerBuilder address(String address) {
+			this.address = address;
 			return this;
 		}
-		public CustomerBuilder addressDetail  (String addressDetail) {
+		public CustomerBuilder addressDetail(String addressDetail) {
 			this.addressDetail = addressDetail;
 			return this;
 		}

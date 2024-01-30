@@ -171,6 +171,7 @@
 				<button
 					id="submit"
 					class="w-fit border-2 border-black rounded-lg bg-[#92a8d1] px-4 py-2 font-bold text-white duration-150 active:scale-95 drop-shadow-md"
+					onclick="alert('회원가입이 완료되었습니다.')"
 				>
 					회원 가입
 				</button>
@@ -198,7 +199,7 @@
 				birth: false,
 				gender: false,
 				email: true,
-				address: false,
+				address: true,
 			};
 			
 			const patternMap = {
@@ -208,10 +209,10 @@
 				tel: '^\\d{2,3}-?\\d{3,4}-?\\d{4}$', // ^ 시작 $ 끝  // \d 정수
 				birth: null,
 				gender: null,
-				email: '^[^\\s\u3131-\u3163\uac00-\ud7a3]+@[a-zA-Z0-9.-]+(?:\\.[a-zA-Z]{2,})+$', // ^ 시작 $ 끝
+				email: '^[^\\s\u3131-\u3163\uAC00-\uD7A3]+@[a-zA-Z0-9.-]+(?:\\.[a-zA-Z]{2,})+$', // ^ 시작 $ 끝
 /* 				email: '^[^\\sㄱ-ㅎㅏ-ㅣ가-힣]+@[a-zA-Z0-9.-]+(?:\\.[a-zA-Z]{2,})+$', // ^ 시작 $ 끝 */
 				address: '[\\s가-힣A-Za-z0-9]{3,}',
-				addressDetail: '[\\s가-힣A-Za-z0-9]{2,}',
+				addressDetail: '[\\s가-힣A-Za-z0-9\\(\\),]{2,}',
 			}
 			
 			element.required = requiredMap[id];
