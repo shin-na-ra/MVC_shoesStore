@@ -139,6 +139,14 @@ public class Controller extends HttpServlet {
 				
 				viewPage = "shoesList.do";
 				break;	
+				
+			//관리자 제품등록	
+			case "/register.do" :
+				command = new SLoadRegisterLog();
+				command.execute(request, response);
+				
+				viewPage = "ProductRegister.jsp";
+				break;	
 			
 			//로그아웃	
 			case "/logout.do" :
