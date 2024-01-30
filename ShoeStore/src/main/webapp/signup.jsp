@@ -36,7 +36,7 @@
 				>
 				<label
 					for="password" class="text-red-600 hidden peer-invalid:block text-sm">
-					비밀번호는 영문 대소문자, 숫자 8자리 이상.
+					비밀번호는 영문 대소문자, 숫자, 특수문자 조합 8자리 이상.
 				</label>
 			</fieldset>
 			<p>성명*</p>
@@ -208,7 +208,8 @@
 				tel: '^\\d{2,3}-?\\d{3,4}-?\\d{4}$', // ^ 시작 $ 끝  // \d 정수
 				birth: null,
 				gender: null,
-				email: '^[^\\sㄱ-ㅎㅏ-ㅣ가-힣]+@[a-zA-Z0-9.-]+(?:\\.[a-zA-Z]{2,})+$', // ^ 시작 $ 끝
+				email: '^[^\\s\u3131-\u3163\uac00-\ud7a3]+@[a-zA-Z0-9.-]+(?:\\.[a-zA-Z]{2,})+$', // ^ 시작 $ 끝
+/* 				email: '^[^\\sㄱ-ㅎㅏ-ㅣ가-힣]+@[a-zA-Z0-9.-]+(?:\\.[a-zA-Z]{2,})+$', // ^ 시작 $ 끝 */
 				address: '[\\s가-힣A-Za-z0-9]{3,}',
 				addressDetail: '[\\s가-힣A-Za-z0-9]{2,}',
 			}
