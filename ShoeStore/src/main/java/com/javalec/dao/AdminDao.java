@@ -114,8 +114,8 @@ public class AdminDao {
 			strPrice = strPrice.replace(",","");
 			int price = Integer.parseInt(strPrice);
 			
-			String strSize = multi.getParameter("size");
-			int size = Integer.parseInt(strSize);
+//			String strSize = multi.getParameter("size");
+//			int size = Integer.parseInt(strSize);
 			
 			String strqty = multi.getParameter("qty");
 			int qty = Integer.parseInt(strqty);
@@ -164,18 +164,17 @@ public class AdminDao {
 				// 내가 등록한 제품의 제품코드(Primary Key) 확인
 				int code = selectCode(name);
 				// 등록 시 해당 이름의 사이즈가 이미 있는지 검사
-				if(checkAlreadySize(code, size)) {
+//				if(checkAlreadySize(code, size)) {
 					// 없다면, 새로운 사이즈 및 수량 Insert
-					productSizeInsert(code, size, qty);
+					productSizeInsert(code, qty);
 					type = "신규 등록";
 					imageTableInsert(code,originalFileName);
-				}
-				else {
-					// 이미 있다면, 	입력한 사이즈에 수량추가 update
-					productSizeUpdate(code, size, qty);
-					type = "추가";
-				}
-				
+//				}
+//				else {
+//					// 이미 있다면, 	입력한 사이즈에 수량추가 update
+//					productSizeUpdate(code, size, qty);
+//					type = "추가";
+//				}
 				
 				// 등록한 정보에 따른 log 입력
 				registerlog(code, qty, type,admin);
@@ -240,22 +239,27 @@ public class AdminDao {
 		return code;
 	} // selectCode
 	
-	public void productSizeInsert(int code, int size, int qty) { // 입력한 사이즈 및 수량 index 추가 
+	public void productSizeInsert(int code, int qty) { // 입력한 사이즈 및 수량 index 추가 
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 				
 		String query = "insert into product_size (product_code,size,qty) values (?,?,?)";
+		
 		try {
-			connection = dataSource.getConnection();
-			
-			preparedStatement = connection.prepareStatement(query);
-			
-			preparedStatement.setInt(1, code);
-			preparedStatement.setInt(2, size);
-			preparedStatement.setInt(3, qty);
-			
-			preparedStatement.executeUpdate();
+				connection = dataSource.getConnection();
+				
+			for(int i=220; i<=280; i+=5) {
+				
+				preparedStatement = connection.prepareStatement(query);
+				
+				preparedStatement.setInt(1, code);
+				preparedStatement.setInt(2, i);
+				preparedStatement.setInt(3, qty);
+				
+				preparedStatement.executeUpdate();
+				
+			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -294,78 +298,78 @@ public class AdminDao {
 		return value;
 	} // koreanTranslator
 	
-	public boolean checkAlreadySize (int code, int size) { // 등록 시 중복 사이즈 체크 
-		boolean result = true;
-		
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		
-		String query = "select p.code, ps.size, ps.qty from product p, product_size ps "
-					 + "where p.code=? and ps.size=?";
-
-		try {
-			connection = dataSource.getConnection();
-			preparedStatement = connection.prepareStatement(query);
-			
-			preparedStatement.setInt(1, code);
-			preparedStatement.setInt(2, size);
-			
-			resultSet = preparedStatement.executeQuery();
-			
-			if(resultSet.next()) {
-				result = true;
-			}
-			else {
-				result = false;
-			}
-			
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		finally { 
-			// 메모리정리
-			try {
-				if(resultSet != null) resultSet.close();
-				if(preparedStatement != null) preparedStatement.close();
-				if(connection != null) connection.close();
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return result;
-	}
+//	public boolean checkAlreadySize (int code, int size) { // 등록 시 중복 사이즈 체크 
+//		boolean result = true;
+//		
+//		Connection connection = null;
+//		PreparedStatement preparedStatement = null;
+//		ResultSet resultSet = null;
+//		
+//		String query = "select p.code, ps.size, ps.qty from product p, product_size ps "
+//					 + "where p.code=? and ps.size=?";
+//
+//		try {
+//			connection = dataSource.getConnection();
+//			preparedStatement = connection.prepareStatement(query);
+//			
+//			preparedStatement.setInt(1, code);
+//			preparedStatement.setInt(2, size);
+//			
+//			resultSet = preparedStatement.executeQuery();
+//			
+//			if(resultSet.next()) {
+//				result = true;
+//			}
+//			else {
+//				result = false;
+//			}
+//			
+//			
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//		finally { 
+//			// 메모리정리
+//			try {
+//				if(resultSet != null) resultSet.close();
+//				if(preparedStatement != null) preparedStatement.close();
+//				if(connection != null) connection.close();
+//			}catch(Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		
+//		return result;
+//	}
 	
-	public void productSizeUpdate (int code, int size, int qty) { // 입력한 사이즈에 수량 추가 
-		
-			Connection connection = null;
-			PreparedStatement preparedStatement = null;
-			
-			String query = "UPDATE product_size as ps SET ps.qty = ps.qty + ? where ps.product_code=? and ps.size=?";
-			try {
-				connection = dataSource.getConnection();
-
-				preparedStatement = connection.prepareStatement(query);
-				preparedStatement.setInt(1, qty);
-				preparedStatement.setInt(2, code);
-				preparedStatement.setInt(3, size) ;
-				
-				preparedStatement.executeUpdate();
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				// 메모리 정리를 finally에서 함, 정리는 역순으로
-				try {
-					if (preparedStatement != null) preparedStatement.close();
-					if (connection != null) connection.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-	}
+//	public void productSizeUpdate (int code, int size, int qty) { // 입력한 사이즈에 수량 추가 
+//		
+//			Connection connection = null;
+//			PreparedStatement preparedStatement = null;
+//			
+//			String query = "UPDATE product_size as ps SET ps.qty = ps.qty + ? where ps.product_code=? and ps.size=?";
+//			try {
+//				connection = dataSource.getConnection();
+//
+//				preparedStatement = connection.prepareStatement(query);
+//				preparedStatement.setInt(1, qty);
+//				preparedStatement.setInt(2, code);
+//				preparedStatement.setInt(3, size) ;
+//				
+//				preparedStatement.executeUpdate();
+//				
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			} finally {
+//				// 메모리 정리를 finally에서 함, 정리는 역순으로
+//				try {
+//					if (preparedStatement != null) preparedStatement.close();
+//					if (connection != null) connection.close();
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//	}
 	
 	public void registerlog(int code, int qty, String type, String admin) { // 제품을 등록했을 때 등록한 log 
 

@@ -45,7 +45,7 @@
 		let name = form.name.value;
 		let kname = form.kname.value;
 		let color = form.color.value;
-		let size = form.size.value;
+		/* let size = form.size.value; */
 		let price = form.price.value;
 		let qty = form.qty.value;
 		let material = form.material.value;
@@ -82,7 +82,7 @@
 			return
 		} */
 		
-		if (size == "") {
+		/* if (size == "") {
 			alert("사이즈를 입력해 주세요.")
 			form.size.select()
 			return
@@ -92,7 +92,7 @@
 			alert("사이즈는 숫자만 입력 가능합니다.")
 			form.size.select()
 			return
-		}
+		} */
 
 		if (price == "") {
 			alert("가격을 입력해 주세요.")
@@ -265,11 +265,11 @@
 							for="sizeInput">색상 입력</label>
 					</div>
 					<br>
-					<div class="form-floating">
+					<!-- <div class="form-floating">
 						<input type="text" class="form-control" name="size" id="sizeInput"
 							style="width: 200px; height: 60px; font-size: 20px; padding-right: 7px;">
 						<label for="sizeInput">사이즈 입력</label>
-					</div>
+					</div> -->
 					<br>
 					<!-- 가격 입력 text -->
 					<div class="form-floating">
