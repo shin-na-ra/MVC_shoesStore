@@ -36,7 +36,7 @@
 				>
 				<label
 					for="password" class="text-red-600 hidden peer-invalid:block text-sm">
-					비밀번호는 영문 대소문자, 숫자, 특수문자 조합 8자리 이상.
+					비밀번호는 영문 대소문자, 숫자, 특수문자 조합 8자리 이상으로 입력하십시오.
 				</label>
 			</fieldset>
 			<p>성명*</p>
@@ -111,7 +111,7 @@
 				<select id="gender" name="gender"
 					class="w-full max-w-full overflow-hidden border border-black rounded-md px-1"
 				>
-					<option value="">선택</option>
+					<option value="" selected>선택</option>
 					<option class="text-slate-300 font-bold" disabled>
 						────────────
 					</option>
@@ -130,10 +130,9 @@
 					placeholder="도메인 주소" onchange="updateEmail()"
 					class="border border-black rounded-md px-2 min-w-0 w-24 placeholder:text-[0.5em] placeholder:-translate-y-0.5"
 					list="domainSelect"
-					onblur="applyValidation('email'); showOrHideEmailMessage();"
 					oninput="updateEmail(this.value)"
+					onblur="applyValidation('email'); showOrHideEmailMessage();"
 				>
-				<%-- <input type="hidden" id="email" name="email"> --%>
 				<datalist id="domainSelect">
 					<option value="aol.com">aol.com</option>
 					<option value="daum.net">daum.net</option>
@@ -158,14 +157,22 @@
 			<fieldset class="flex flex-col col-span-2 gap-2">
 				<input type="text" id="address" name="address"
 					placeholder="도로명 주소를 입력하세요"
-					class="border border-black rounded-md px-2 invalid:border-red-600"
+					class="peer border border-black rounded-md px-2 invalid:border-red-600"
 					onblur="applyValidation(this.id); this.value = this.value.trim();"
 				>
+				<label
+					for="address" class="text-red-600 hidden peer-invalid:block text-sm">
+					올바른 도로명 주소를 입력하십시오.
+				</label>
 				<input type="text" id="addressDetail" name="addressDetail"
 					placeholder="상세 주소를 입력하세요"
-					class="border border-black rounded-md px-2 invalid:border-red-600"
+					class="peer border border-black rounded-md px-2 invalid:border-red-600"
 					onblur="applyValidation(this.id); this.value = this.value.trim();"
 				>
+				<label
+					for="addressDetail" class="text-red-600 hidden peer-invalid:block text-sm">
+					올바른 상세 주소를 입력하십시오.
+				</label>
 			</fieldset>
 			<div class="col-span-3 flex justify-end pr-4">			
 				<button
@@ -196,8 +203,8 @@
 				password: true,
 				fullName: true,
 				tel: true,
-				birth: false,
-				gender: false,
+				birth: true,
+				gender: true,
 				email: true,
 				address: true,
 			};
@@ -209,8 +216,7 @@
 				tel: '^\\d{2,3}-?\\d{3,4}-?\\d{4}$', // ^ 시작 $ 끝  // \d 정수
 				birth: null,
 				gender: null,
-				email: '^[^\\s\u3131-\u3163\uAC00-\uD7A3]+@[a-zA-Z0-9.-]+(?:\\.[a-zA-Z]{2,})+$', // ^ 시작 $ 끝
-/* 				email: '^[^\\sㄱ-ㅎㅏ-ㅣ가-힣]+@[a-zA-Z0-9.-]+(?:\\.[a-zA-Z]{2,})+$', // ^ 시작 $ 끝 */
+				email: '^[A-Za-z0-9_\\.\\-]+@[A-Za-z0-9\\-]+\\.[A-Za-z0-9\\-]+$', // ^ 시작 $ 끝
 				address: '[\\s가-힣A-Za-z0-9]{3,}',
 				addressDetail: '[\\s가-힣A-Za-z0-9\\(\\),]{2,}',
 			}
