@@ -14,7 +14,7 @@
     <p class="mb-0">(우 01111) OO시 OO로 11</p>
     <p class="mb-0">(시스템) 시스템 장애 T.080-022-2222</p>
     <p class="mb-0">(고객센터) T.044-111-1111</p>
-    <p class="mb-1"> Copyright &copy; ESHOE. All Rights reserved. </p>
+    <p class="mb-1"> Copyright &copy; E Shoe. All Rights reserved. </p>
   </div>
 </body>
 </html>
