@@ -33,7 +33,7 @@ public class SLoginCommand implements SCommand {
             request.setAttribute("loginResult", "admin");
            
          	String admin = id;
-         	System.out.println(admin);
+//         	System.out.println(admin);
          	session.setAttribute("admin", admin);
          	
         } else if (loginCustomerResult) {
