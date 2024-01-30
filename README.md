@@ -45,6 +45,9 @@
 #### 관리자 제품 등록화면
 - 제품명, 제품가격, 제품이미지 등 제품 등록화면
 
+
+<img width="861" alt="스크린샷 2024-01-30 오후 1 42 03" src="https://github.com/shin-na-ra/MVC_shoesStore/assets/152368203/4a1eb840-0c4d-4c39-960d-de3b441b4b47">
+
  
 
 
