@@ -7,13 +7,17 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.javalec.dao.LoginDao;
+import com.mysql.cj.Session;
 
 public class SLoginCommand implements SCommand {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
+    	
+    	HttpSession session = request.getSession();
 
         String id = request.getParameter("id");
         String pw = request.getParameter("pw");
@@ -26,6 +30,11 @@ public class SLoginCommand implements SCommand {
 
         if (loginAdminResult) {
             request.setAttribute("loginResult", "admin");
+           
+         	String admin = id;
+         	System.out.println(admin);
+         	session.setAttribute("admin", admin);
+         	
         } else if (loginCustomerResult) {
             request.setAttribute("loginResult", "success");
         } else {

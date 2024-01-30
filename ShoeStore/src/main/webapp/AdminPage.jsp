@@ -12,14 +12,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
   </head>
-  
+
 <script type="text/javascript">
   
 	function showAlert() {
 		alert("미구현 기능입니다.");
 	}
 </script>  
-
   <body>
     <!-- Nav 설정 -->
 	<jsp:include page="AdminNav.jsp" />
@@ -40,14 +39,13 @@
     <div class="row">
       <c:forEach items="${products}" var="dto" varStatus="loop">
             <div class="col-md-3 mb-5"> <%-- 한 행에 4개의 열을 가지도록 지정 --%>
-                <div class="card" style="width: 250px; height: 550px;">
+                <div class="card" style="width: 250px; height: 500px;">
                    <img src="${pageContext.request.contextPath}/file/${dto.image}"
                     class="card-img-top" alt="..." style="height: 300px;">
                     <div class="card-body">
                         <h5 class="card-title">${dto.name}</h5>
                         <p class="card-text" align="left">
-                            제품코드 : ${dto.code } <br>브랜드 : ${dto.brand }<br>색상 : ${dto.color}<br>가격 : ${dto.price}<br>사이즈
-                            : ${dto.size}<br>남은 재고 : ${dto.qty}
+                            제품코드 :${dto.code}<br>브랜드 : ${dto.brand }<br>색상 : ${dto.color}<br>가격 : ${dto.strPrice}<br>총 수량  : ${dto.qty}
                         </p>
                     </div>
                 </div>

@@ -201,22 +201,24 @@
 						<table class="table table-hover" style="width: 500px; margin-left: 20px;">
 							<thead>
 							<tr>
-							<th colspan="4" style="text-align: center;">최근 기록(가장 최근 5개)</th>
+							<th colspan="5" style="text-align: center;">최근 기록(가장 최근 5개)</th>
 							</tr>
 								<tr>
-									<th scope="col">제품 코드</th>
+									<th scope="col">신발 이름</th>
 									<th scope="col">관리자 ID</th>
 									<th scope="col">수량</th>
 									<th scope="col">날짜</th>
+									<th scope="col">유형</th>
 								</tr>
 							</thead>
 							<tbody>
 							<c:forEach items="${registerLog}" var="log">
 								<tr>
-									<th scope="row">${log.code}</th>
+									<th scope="row">${log.name}</th>
 									<td>${log.admin}</td>
 									<td>${log.qty}</td>
 									<td>${log.date}</td>
+									<td>${log.type}</td>
 								</tr>
 							</c:forEach>
 							</tbody>

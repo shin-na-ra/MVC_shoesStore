@@ -18,6 +18,7 @@ public class AdminDto {
 	String date;
 	String admin;
 	String type;
+	String strPrice;
 	
 	// Constructor
 	public AdminDto(int code, String brand, String name, String color, int price, int size, int qty, String image,
@@ -37,21 +38,31 @@ public class AdminDto {
 		this.madein = madein;
 	}
 	
-	public AdminDto(int code, String brand, String name, String color, int price, int size, int qty, String image) {
+	public AdminDto(int code, String brand, String name, String color, int price, int qty, String image) {
 		super();
 		this.code = code;
 		this.brand = brand;
 		this.name = name;
 		this.color = color;
 		this.price = price;
-		this.size = size;
 		this.qty = qty;
 		this.image = image;
 	}
 	
-	public AdminDto(int code, String admin, int qty, String date, String type ) {
+	public AdminDto(int code, String brand, String name, String color, String strPrice, int qty, String image) {
 		super();
 		this.code = code;
+		this.brand = brand;
+		this.name = name;
+		this.color = color;
+		this.strPrice = strPrice;
+		this.qty = qty;
+		this.image = image;
+	}
+	
+	public AdminDto(String name, String admin, int qty, String date, String type ) {
+		super();
+		this.name = name;
 		this.admin = admin;
 		this.qty = qty;
 		this.date = date;
@@ -178,5 +189,14 @@ public class AdminDto {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public String getStrPrice() {
+		return strPrice;
+	}
+
+	public void setStrPrice(String strPrice) {
+		this.strPrice = strPrice;
+	}
+	
 	
 }

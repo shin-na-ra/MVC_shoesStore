@@ -37,11 +37,10 @@ public class AdminDao {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		
-		String query = "SELECT p.code, p.brand, p.name, p.color, p.price, p.image, MAX(ps.qty) AS max_qty, MAX(ps.size) AS max_size "
-					 + "FROM product p "
-					 + "JOIN product_size ps ON p.code = ps.product_code "
-					 + "WHERE ps.qty IS NOT NULL "
-					 + "GROUP BY p.code, p.brand, p.name, p.color, p.price, p.image;";
+		String query = "select p.code, p.brand, p.name, p.color, format(p.price,0) as price, p.image, sum(ps.qty) as qty "
+				+ "from product p "
+				+ "join product_size ps on p.code = ps.product_code "
+				+ "group by p.code, p.brand, p.kname, p.color, p.price, p.image;";
 		
 		try {
 			connection = dataSource.getConnection();
@@ -55,12 +54,12 @@ public class AdminDao {
 				String brand = resultSet.getString("p.brand");
 				String name = resultSet.getString("p.name");
 				String color = resultSet.getString("p.color");
-				int price = resultSet.getInt("p.price");
+				String strPrice = resultSet.getString("price");
+						
 				String image = resultSet.getString("p.image");
-				int qty = resultSet.getInt("max_qty");
-				int size = resultSet.getInt("max_size");
+				int qty = resultSet.getInt("qty");
 				
-				AdminDto dto = new AdminDto(code, brand, name, color, price, size, qty, image);
+				AdminDto dto = new AdminDto(code, brand, name, color, strPrice, qty, image);
 			
 				dtos.add(dto);
 			}
@@ -79,8 +78,8 @@ public class AdminDao {
 		return dtos;
 	} // loadProducts
 	
-	public void insertAction(HttpServletRequest request, HttpServletResponse response) { // 사용자가 상품등록 form에 입력한 값 DB에 추가 
-		
+	public void insertAction(HttpServletRequest request, HttpServletResponse response, String admin) { // 사용자가 상품등록 form에 입력한 값 DB에 추가 
+
 		String originalFileName = "";
 		String type = "";
 		
@@ -176,7 +175,7 @@ public class AdminDao {
 					type = "신규 등록";
 				}
 				// 등록한 정보에 따른 log 입력
-				registerlog(code, qty, type);
+				registerlog(code, qty, type,admin);
 				
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -296,7 +295,8 @@ public class AdminDao {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		
-		String query = "select p.code, ps.size, p.qty from product p, product_size ps where p.code=? and ps.size=?";
+		String query = "select p.code, ps.size, ps.qty from product p, product_size ps "
+					 + "where p.code=? and ps.size=?";
 
 		try {
 			connection = dataSource.getConnection();
@@ -337,7 +337,7 @@ public class AdminDao {
 			Connection connection = null;
 			PreparedStatement preparedStatement = null;
 			
-			String query = "UPDATE product_size as ps SET ps.qty = ps.qty + ? where p.code=? and ps.size=?";
+			String query = "UPDATE product_size as ps SET ps.qty = ps.qty + ? where ps.product_code=? and ps.size=?";
 			try {
 				connection = dataSource.getConnection();
 
@@ -361,20 +361,21 @@ public class AdminDao {
 			}
 	}
 	
-	public void registerlog(int code, int qty, String type) { // 제품을 등록했을 때 등록한 log 
+	public void registerlog(int code, int qty, String type, String admin) { // 제품을 등록했을 때 등록한 log 
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String query = "insert into register (product_code,admin_id,qty,date,type) values (?,admin,?,now(),?)";
+		String query = "insert into register (product_code,admin_id,qty,date,type) values (?,?,?,now(),?)";
 		try {
 			connection = dataSource.getConnection();
 
 			preparedStatement = connection.prepareStatement(query);
 
 			preparedStatement.setInt(1, code);
-			preparedStatement.setInt(2, qty);
-			preparedStatement.setString(3, type);
+			preparedStatement.setString(2, admin);
+			preparedStatement.setInt(3, qty);
+			preparedStatement.setString(4, type);
 			
 			preparedStatement.executeUpdate();
 
@@ -401,10 +402,10 @@ public class AdminDao {
 			PreparedStatement preparedStatement = null;
 			ResultSet resultSet = null;
 			
-			String query = "select p.name, r.admin_id, r,qty, r.date, r.type "
-							   + "from product p, rigster r "
-							   + "where r.code = p.code "
-							   + "order by r.date DESC LIMIT 5";
+			String query = "select p.name, r.admin_id, r.qty, r.date, r.type "
+					     + "from product p, register r "
+					     + "where r.product_code = p.code "
+						 + "order by r.date DESC LIMIT 5";
 			
 			try {
 				connection = dataSource.getConnection();
@@ -413,13 +414,13 @@ public class AdminDao {
 				resultSet = preparedStatement.executeQuery();
 				
 				while (resultSet.next()) {
-					int code = resultSet.getInt("product_code");
-					String adminId = resultSet.getString("admin_id");
-					int qty = resultSet.getInt("qty");
-					String date = resultSet.getString("date");
-					String type = resultSet.getString("type");
+					String name = resultSet.getString("p.name");
+					String adminId = resultSet.getString("r.admin_id");
+					int qty = resultSet.getInt("r.qty");
+					String date = resultSet.getString("r.date");
+					String type = resultSet.getString("r.type");
 					
-					AdminDto dto = new AdminDto(code, adminId, qty, date, type);
+					AdminDto dto = new AdminDto(name, adminId, qty, date, type);
 					
 					dtos.add(dto);
 				}
