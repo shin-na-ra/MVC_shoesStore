@@ -26,7 +26,7 @@
 	
     <div class="container my-5">
       <h1>E Shoes Admin Main Page</h1><br>
-        <a href="ProductRegister.jsp" class="btn btn-primary" style="width: 110px">제품 등록</a>&nbsp;&nbsp;&nbsp;
+        <a href="register.do" class="btn btn-primary" style="width: 110px">제품 등록</a>&nbsp;&nbsp;&nbsp;
         <a href="#" class="btn btn-warning" style="width: 110px" onclick="showAlert()">제품 수정</a>&nbsp;&nbsp;&nbsp;
         
         <hr class="col-12 my-4">

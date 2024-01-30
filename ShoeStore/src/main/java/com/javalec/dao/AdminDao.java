@@ -366,7 +366,7 @@ public class AdminDao {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String query = "insert into 상품등록Table이름 (product_code,admin_id,qty,date,type) values (?,admin,?,now(),?)";
+		String query = "insert into register (product_code,admin_id,qty,date,type) values (?,admin,?,now(),?)";
 		try {
 			connection = dataSource.getConnection();
 
@@ -401,9 +401,10 @@ public class AdminDao {
 			PreparedStatement preparedStatement = null;
 			ResultSet resultSet = null;
 			
-			String query = "select product_code, admin_id, qty, date, type "
-							   + "from 로그 테이블명 "
-							   + "order by date DESC LIMIT 5";
+			String query = "select p.name, r.admin_id, r,qty, r.date, r.type "
+							   + "from product p, rigster r "
+							   + "where r.code = p.code "
+							   + "order by r.date DESC LIMIT 5";
 			
 			try {
 				connection = dataSource.getConnection();

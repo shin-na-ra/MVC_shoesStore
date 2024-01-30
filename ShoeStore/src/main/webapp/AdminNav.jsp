@@ -19,7 +19,7 @@
                 Products
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="ProductRegister.jsp">상품 등록</a></li>
+                <li><a class="dropdown-item" href="register.do">상품 등록</a></li>
                 <li><a class="dropdown-item" href="#" onclick="showAlert()">상품 수정</a></li>
                 <li><a class="dropdown-item" href="#" onclick="showAlert()">상품 삭제</a></li>
               </ul>
