@@ -68,11 +68,12 @@ public class Controller extends HttpServlet {
 	            viewPage = "alert.jsp";
 	            break;
 	           
+	            
+	        //제품조회 페이지   
 			case "/shoesList.do" :
 				command = new SListCommand();
 				command.execute(request, response);
 				session.setAttribute("id", "hwicoding");
-				
 				viewPage = "product.jsp";
 				break;
 				
@@ -81,6 +82,8 @@ public class Controller extends HttpServlet {
 			case "/signUpForm.do":
 				viewPage = "signup.jsp";
 				break;
+				
+				
 			// 회원가입 처리 (처리 후 로그인 폼으로 이동)
 			case "/signUp.do":
 				// TODO 가입
@@ -89,6 +92,8 @@ public class Controller extends HttpServlet {
 				viewPage = "/list.do";
 				break;
 				
+				
+			//관리자페이지 
 			case "/loadProducts.do" :
 				command = new SLoadProductCommand();
 				command.execute(request, response);
@@ -96,6 +101,7 @@ public class Controller extends HttpServlet {
 				viewPage = "AdminPage.jsp";
 				break;
 			
+			//관리자페이지 등록	
 			case "/update.do" :
 				command = new SAdminUploadFileCommand();
 				command.execute(request, response);
@@ -103,6 +109,7 @@ public class Controller extends HttpServlet {
 				viewPage = "loadProducts.do";
 				break;
 				
+			// 제품 상세 - 구매페이지	
 			case "/purchase_view.do" :
 				// session을 통해 클릭한 신발의 code key를 보내기
 				String code = request.getParameter("code");
@@ -114,14 +121,16 @@ public class Controller extends HttpServlet {
 				viewPage = "purchase.jsp";
 				
 				break;
-				
+			
+			//제품조회페이지 
 			case "/purchase.do" :
 				command = new SPurchaseCommand();
 				command.execute(request, response);
 				
-				viewPage = "shoesList.do";
+				viewPage = "product.jsp";
 				break;
 				
+			//검색 
 			case "/search.do" :
 			    String input = request.getParameter("searchInput");
 			    System.out.println(input);
@@ -132,6 +141,15 @@ public class Controller extends HttpServlet {
 				viewPage = "shoesList.do";
 				break;	
 				
+			//관리자 제품등록	
+			case "/register.do" :
+				command = new SLoadRegisterLog();
+				command.execute(request, response);
+				
+				viewPage = "ProductRegister.jsp";
+				break;	
+			
+			//로그아웃	
 			case "/logout.do" :
 				viewPage = "login.jsp";
 				session.invalidate();
