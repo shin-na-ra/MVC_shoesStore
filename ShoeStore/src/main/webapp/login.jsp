@@ -118,7 +118,7 @@
 <main class="form-signin">
   <form action="login.do" name ="Member" onsubmit="return checkMember()" method="post">
     <!--<img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">-->
-    <p class="title">E SHOE</p>
+    <p class="title">E Shoe</p>
 
     <div class="form-floating">
       <input type="text" name="id" class="form-control" id="floatingInput" placeholder="아이디">
@@ -136,7 +136,7 @@
     </div>-->
     <button class="w-100 btn btn-lg btn-primary btn-log-in" type="submit" id="loginBtn">로그인</button><br>
   </form>
-  <form action="/signUpForm.do">
+  <form action="signUpForm.do">
 	<button class="w-100 btn btn-lg btn-primary btn-sign-up" type="submit">회원가입</button>
           <p class="mt-5 mb-3 text-muted">&copy; 2024</p>
   </form>
