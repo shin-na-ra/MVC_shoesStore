@@ -132,52 +132,51 @@
 
 	<!-- 사이즈 클릭 후 구매하기 버튼을 누르면 작동하는 함수 -->
 	<script>
-	/* 검색을 위한 formaction */
-	function searchShoes() {
-	  	var search = document.searchAction;
-	  		  
-	  	search.submit();
-	}
-	
+		/* 검색을 위한 formaction */
+		function searchShoes() {
+			var search = document.searchAction;
 
-	function selectSize(button) {
-		
-		// 모든 버튼들 스타일 초기화
-	    var buttons = document.querySelectorAll('.c-chip');
-	    buttons.forEach(function (btn) {
-	        btn.style.backgroundColor = ''; // 배경 초기화
-	        btn.style.border = ''; // 보더 초기화
-	    });
-		
-	    // 클릭 시 배경화면 색상 설정
-	    button.style.backgroundColor = 'white';
-	    button.style.border = '1px solid black'; // Set border and color
-	    
-	    document.getElementById("hiddenSize").value = button.value;
-    }
-	
-	/* 선택한 사이즈를 보내는 formaction */
-	function sendSize() {
-		
-		var s = document.buy;
-		
-		s.submit();
-	}
-	
-	function validateForm() {
-	    // Check if a size is selected
-	    var selectedSize = document.getElementById('selectedSize').value.trim(); // Trim to handle whitespace
-	    if (selectedSize == null) {
-	        // Display an error message or handle it as needed
-	        alert('사이즈를 선택 해주세요.');
-	        return false; // Prevent form submission
-	    }
+			search.submit();
+		}
 
-	    // Continue with form submission if a size is selected
-	    return true;
-	}
-	
-</script>
+		function selectSize(button) {
+
+			// 모든 버튼들 스타일 초기화
+			var buttons = document.querySelectorAll('.c-chip');
+			buttons.forEach(function(btn) {
+				btn.style.backgroundColor = ''; // 배경 초기화
+				btn.style.border = ''; // 보더 초기화
+			});
+
+			// 클릭 시 배경화면 색상 설정
+			button.style.backgroundColor = 'white';
+			button.style.border = '1px solid black'; // Set border and color
+
+			document.getElementById("hiddenSize").value = button.value;
+		}
+
+		/* 선택한 사이즈를 보내는 formaction */
+		function sendSize() {
+
+			var s = document.buy;
+
+			s.submit();
+		}
+
+		function validateForm() {
+			// Check if a size is selected
+			var selectedSize = document.getElementById('selectedSize').value
+					.trim(); // Trim to handle whitespace
+			if (selectedSize == null) {
+				// Display an error message or handle it as needed
+				alert('사이즈를 선택 해주세요.');
+				return false; // Prevent form submission
+			}
+
+			// Continue with form submission if a size is selected
+			return true;
+		}
+	</script>
 	<c:forEach items="${shoesInfo}" var="info">
 
 		<main>
@@ -232,8 +231,9 @@
 								</div>
 							</div>
 							<br> <br>
-							
-							<form action="purchase.do" method="post" name="buy" onsubmit="return validateForm()">
+
+							<form action="purchase.do" method="post" name="buy"
+								onsubmit="return validateForm()">
 								<div class="l-grid__row" data-ui-type="Detail_Item_Option">
 									<section>
 										<h3>SIZE</h3>
@@ -251,14 +251,16 @@
 									<div class="btm-drawer open">
 										<div class="c-btn_wrap" align="left">
 											<!-- size 넘기기 위한 히든 인풋 -->
-											<input type="hidden" class="c-button__hide" name="hiddenSize" id="hiddenSize">
+											<input type="hidden" class="c-button__hide" name="hiddenSize"
+												id="hiddenSize">
 											<!-- 보이는 버튼 -->
-											<input type="button" class="c-button__primary" value="BUY NOW" onclick="sendSize()">
+											<input type="button" class="c-button__primary"
+												value="BUY NOW" onclick="sendSize()">
 										</div>
 									</div>
 								</div>
 							</form>
-							
+
 							<br> <br>
 							<div class="l-grid__row" data-ui-type="Detail_Item_Description">
 								<section>
@@ -306,17 +308,7 @@
 	</c:forEach>
 
 	<footer class="text-muted py-5">
-		<div class="container">
-			<p class="float-end mb-1">
-				<a href="#">Back to top</a>
-			</p>
-			<p class="mb-1">Album example is &copy; Bootstrap, but please
-				download and customize it for yourself!</p>
-			<p class="mb-0">
-				New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
-					href="../getting-started/introduction/">getting started guide</a>.
-			</p>
-		</div>
+		<jsp:include page="footer.jsp" flush="false" />
 	</footer>
 
 
