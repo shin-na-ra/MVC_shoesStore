@@ -165,15 +165,18 @@ public class AdminDao {
 				int code = selectCode(name);
 				// 등록 시 해당 이름의 사이즈가 이미 있는지 검사
 				if(checkAlreadySize(code, size)) {
+					// 없다면, 새로운 사이즈 및 수량 Insert
+					productSizeInsert(code, size, qty);
+					type = "신규 등록";
+					imageTableInsert(code,originalFileName);
+				}
+				else {
 					// 이미 있다면, 	입력한 사이즈에 수량추가 update
 					productSizeUpdate(code, size, qty);
 					type = "추가";
 				}
-				else {
-					// 없다면, 새로운 사이즈 및 수량 Insert
-					productSizeInsert(code, size, qty);
-					type = "신규 등록";
-				}
+				
+				
 				// 등록한 정보에 따른 log 입력
 				registerlog(code, qty, type,admin);
 				
@@ -283,6 +286,9 @@ public class AdminDao {
 		}
 		else if(value.equals("VANS")) {
 			value = "반스";
+		}
+		else if(value.equals("CONVERSE")) {
+			value = "컨버스";
 		}
 		
 		return value;
@@ -445,4 +451,34 @@ public class AdminDao {
 		return dtos;
 	}
 	
+	public void imageTableInsert(int code, String image) {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		String query = "insert into product_image (code,image) values (?,?)";
+		try {
+			connection = dataSource.getConnection();
+
+			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setInt(1, code);
+			preparedStatement.setString(2, image);
+			
+			preparedStatement.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 메모리정리
+			try {
+				if (preparedStatement != null) preparedStatement.close();
+				if (connection != null) connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+		
+	}
 } // End

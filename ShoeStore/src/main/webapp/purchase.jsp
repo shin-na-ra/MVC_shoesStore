@@ -165,7 +165,7 @@
 													height="0px" xmlns="http://www.w3.org/2000/svg" role="img"
 													aria-label="Placeholder: Thumbnail"
 													preserveAspectRatio="xMidYMid slice" focusable="false">
- <img src="${images.image}" alt="Shoe Image">
+ <img src="${pageContext.request.contextPath}/file/${images.image}" alt="Shoe Image">
  </svg>
 											</div>
 										</div>
