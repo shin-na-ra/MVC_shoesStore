@@ -65,6 +65,8 @@ public class Controller extends HttpServlet {
 			case "/login.do":
 	            command = new SLoginCommand();
 	            command.execute(request, response);	     
+	            String id = (String) request.getAttribute("id");
+	            session.setAttribute("id", id);
 	            viewPage = "alert.jsp";
 	            break;
 	           
@@ -73,7 +75,7 @@ public class Controller extends HttpServlet {
 			case "/shoesList.do" :
 				command = new SListCommand();
 				command.execute(request, response);
-				session.setAttribute("id", "hwicoding");
+				//session.setAttribute("id", "hwicoding");
 				viewPage = "product.jsp";
 				break;
 				
