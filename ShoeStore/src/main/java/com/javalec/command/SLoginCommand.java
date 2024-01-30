@@ -23,6 +23,7 @@ public class SLoginCommand implements SCommand {
         boolean loginCustomerResult = dao.validateUser(id, pw);
 
         response.setContentType("text/html; charset=UTF-8");
+        request.setAttribute("id", id);
 
         if (loginAdminResult) {
             request.setAttribute("loginResult", "admin");
@@ -32,12 +33,12 @@ public class SLoginCommand implements SCommand {
             request.setAttribute("loginResult", "fail");
         }
 
-        // JSTL을 사용하여 메시지를 표시할 JSP 페이지로 포워딩
-        RequestDispatcher dispatcher = request.getRequestDispatcher("alert.jsp");
-        try {
-            dispatcher.forward(request, response);
-        } catch (ServletException | IOException e) {
-            e.printStackTrace();
-        }
+//        // JSTL을 사용하여 메시지를 표시할 JSP 페이지로 포워딩
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("alert.jsp");
+//        try {
+//            dispatcher.forward(request, response);
+//        } catch (ServletException | IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }
