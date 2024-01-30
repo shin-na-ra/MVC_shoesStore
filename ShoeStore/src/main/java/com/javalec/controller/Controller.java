@@ -47,7 +47,7 @@ public class Controller extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		HttpSession session = request.getSession();
-		
+		String userId = "";
 		SCommand command = null;
 		String viewPage = null;
 		
@@ -65,8 +65,8 @@ public class Controller extends HttpServlet {
 			case "/login.do":
 	            command = new SLoginCommand();
 	            command.execute(request, response);	     
-	            String id = (String) request.getAttribute("id");
-	            session.setAttribute("id", id);
+	            userId = (String) request.getAttribute("id");
+	            session.setAttribute("id", userId);
 	            viewPage = "alert.jsp";
 	            break;
 	           
@@ -75,8 +75,12 @@ public class Controller extends HttpServlet {
 			case "/shoesList.do" :
 				command = new SListCommand();
 				command.execute(request, response);
-				String userId = (String)session.getAttribute("id");
+				
+				userId = (String) session.getAttribute("id");
 				session.setAttribute("id", userId);
+				
+				
+				System.out.println("세션붙냐2323? : "+userId);
 				//session.setAttribute("id", "hwicoding");
 				viewPage = "product.jsp";
 				break;
@@ -131,7 +135,7 @@ public class Controller extends HttpServlet {
 				command = new SPurchaseCommand();
 				command.execute(request, response);
 				
-				viewPage = "product.jsp";
+				viewPage = "/shoesList.do";
 				break;
 				
 			//검색 
