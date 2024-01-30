@@ -125,7 +125,7 @@
 					onchange="updateEmail()"
 					class="border border-black rounded-md px-2 min-w-0 w-24 placeholder:text-[0.5em] placeholder:-translate-y-0.5"
 				>
-				@
+				<span>@</span>
 				<input type="text" id="email2" name="email2"
 					placeholder="도메인 주소" onchange="updateEmail()"
 					class="border border-black rounded-md px-2 min-w-0 w-24 placeholder:text-[0.5em] placeholder:-translate-y-0.5"
@@ -197,7 +197,7 @@
 				tel: true,
 				birth: false,
 				gender: false,
-				email: false,
+				email: true,
 				address: false,
 			};
 			
@@ -208,7 +208,7 @@
 				tel: '^\\d{2,3}-?\\d{3,4}-?\\d{4}$', // ^ 시작 $ 끝  // \d 정수
 				birth: null,
 				gender: null,
-				email: '^[^\\sㄱ-ㅎㅏ-ㅣ가-힣]+@[a-zA-Z0-9.-]+(?:\\.[a-zA-Z]{2,})+$', // ^ 시작 $ 끝  // \d 정수
+				email: '^[^\\sㄱ-ㅎㅏ-ㅣ가-힣]+@[a-zA-Z0-9.-]+(?:\\.[a-zA-Z]{2,})+$', // ^ 시작 $ 끝
 				address: '[\\s가-힣A-Za-z0-9]{3,}',
 				addressDetail: '[\\s가-힣A-Za-z0-9]{2,}',
 			}
