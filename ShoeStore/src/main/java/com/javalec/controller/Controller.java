@@ -113,6 +113,8 @@ public class Controller extends HttpServlet {
 			case "/update.do" :
 				command = new SAdminUploadFileCommand();
 				command.execute(request, response);
+				userId = (String) session.getAttribute("id");
+				session.setAttribute("id", userId);
 				
 				viewPage = "loadProducts.do";
 				break;
@@ -134,25 +136,24 @@ public class Controller extends HttpServlet {
 			case "/purchase.do" :
 				command = new SPurchaseCommand();
 				command.execute(request, response);
-				
 				viewPage = "/shoesList.do";
 				break;
 				
 			//검색 
 			case "/search.do" :
 			    String input = request.getParameter("searchInput");
-			    System.out.println(input);
-				
 				command = new SListCommand();
 				command.execute(request, response);
-				
 				viewPage = "shoesList.do";
+				
 				break;	
 				
 			//관리자 제품등록	
 			case "/register.do" :
 				command = new SLoadRegisterLog();
 				command.execute(request, response);
+				userId = (String) session.getAttribute("id");
+				session.setAttribute("id", userId);
 				
 				viewPage = "ProductRegister.jsp";
 				break;	
