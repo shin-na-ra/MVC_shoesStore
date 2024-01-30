@@ -39,7 +39,7 @@
     <div class="row">
       <c:forEach items="${products}" var="dto" varStatus="loop">
             <div class="col-md-3 mb-5"> <%-- 한 행에 4개의 열을 가지도록 지정 --%>
-                <div class="card" style="width: 250px; height: 500px;">
+                <div class="card" style="width: 250px; height: 550px;">
                    <img src="${pageContext.request.contextPath}/file/${dto.image}"
                     class="card-img-top" alt="..." style="height: 300px;">
                     <div class="card-body">
