@@ -12,6 +12,7 @@ import com.javalec.command.SCommand;
 import com.javalec.command.SLoginCommand;
 import com.javalec.command.SListCommand;
 import com.javalec.command.SLoadProductCommand;
+import com.javalec.command.SLoadRegisterLog;
 import com.javalec.command.SSignUpCommand;
 import com.javalec.command.SPurchaseCommand;
 import com.javalec.command.SPurchaseViewCommand;
