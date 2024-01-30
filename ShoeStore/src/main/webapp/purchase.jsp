@@ -132,6 +132,7 @@
 
 	<!-- 사이즈 클릭 후 구매하기 버튼을 누르면 작동하는 함수 -->
 	<script>
+	
 		/* 검색을 위한 formaction */
 		function searchShoes() {
 			var search = document.searchAction;
@@ -154,6 +155,16 @@
 
 			document.getElementById("hiddenSize").value = button.value;
 		}
+		
+		function alertSize() {
+	        alert("품절된 사이즈입니다.");
+
+	        var buttons = document.getElementById("soldoutSize");
+
+	        for (var i = 0; i < buttons.length; i++) {
+	            buttons[i].disabled = true;
+	        }
+	    }
 
 		/* 선택한 사이즈를 보내는 formaction */
 		function sendSize() {
@@ -163,25 +174,13 @@
 			s.submit();
 		}
 
-		function validateForm() {
-			// Check if a size is selected
-			var selectedSize = document.getElementById('selectedSize').value
-					.trim(); // Trim to handle whitespace
-			if (selectedSize == null) {
-				// Display an error message or handle it as needed
-				alert('사이즈를 선택 해주세요.');
-				return false; // Prevent form submission
-			}
-
-			// Continue with form submission if a size is selected
-			return true;
-		}
 	</script>
 	<c:forEach items="${shoesInfo}" var="info">
 
 		<main>
 			<div class="container-fluid">
 				<div class="row">
+
 					<!-- 이미지 불러오기 -->
 					<div class="col-md-6">
 						<div class="album py-5 bg-light">
@@ -206,6 +205,7 @@
 							</div>
 						</div>
 					</div>
+
 					<!-- information 불러오기-->
 					<div class="col-md-6">
 						<div class="sticky-container"
@@ -232,22 +232,35 @@
 							</div>
 							<br> <br>
 
-							<form action="purchase.do" method="post" name="buy"
-								onsubmit="return validateForm()">
+							<form action="purchase.do" method="post" name="buy">
 								<div class="l-grid__row" data-ui-type="Detail_Item_Option">
 									<section>
 										<h3>SIZE</h3>
 										<div class="c-chip-input">
+
 											<!-- 신발 사이즈 shoesSize로부터 불러온다 -->
 											<c:forEach items="${shoesSize}" var="shoeSize">
-												<input class="c-chip" type="button" id="size" name="size"
-													value="${shoeSize.size}" onclick="selectSize(this)">
-												<input type="hidden" id="hiddenQty" value="${shoeSize.qty}">
+												<c:choose>
+													<c:when test="${shoeSize.qty > 0}">
+														<input class="c-chip" type="button"
+															id="size_${shoeSize.size}" name="size"
+															value="${shoeSize.size}" onclick="selectSize(this)">
+														<%-- <input type="hidden" id="hiddenQty_${shoeSize.size}" value="${shoeSize.qty}"> --%>
+													</c:when>
+													<c:otherwise>
+														<input class="c-chip" type="button"
+															id="soldoutSize_${shoeSize.size}" name="soldoutSize"
+															readonly="readonly" value="${shoeSize.size}"
+															onclick="alertSize()">
+													</c:otherwise>
+												</c:choose>
 											</c:forEach>
+
 										</div>
 									</section>
-									<div class="notice-area"></div>
+
 									<br>
+
 									<div class="btm-drawer open">
 										<div class="c-btn_wrap" align="left">
 											<!-- size 넘기기 위한 히든 인풋 -->
@@ -279,6 +292,7 @@
 									</ul>
 								</section>
 							</div>
+
 							<br> <br>
 							<div class="l-grid__row" data-ui-type="Detail_Item_Info">
 								<div class="c-accordion">
