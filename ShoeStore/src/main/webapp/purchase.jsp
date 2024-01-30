@@ -142,13 +142,14 @@
 
 		function selectSize(button) {
 
+			
 			// 모든 버튼들 스타일 초기화
 			var buttons = document.querySelectorAll('.c-chip');
 			buttons.forEach(function(btn) {
 				btn.style.backgroundColor = ''; // 배경 초기화
 				btn.style.border = ''; // 보더 초기화
 			});
-
+			
 			// 클릭 시 배경화면 색상 설정
 			button.style.backgroundColor = 'white';
 			button.style.border = '1px solid black'; // Set border and color
@@ -168,7 +169,7 @@
 
 		/* 선택한 사이즈를 보내는 formaction */
 		function sendSize() {
-
+			alert("구매가 완료 되었습니다.");
 			var s = document.buy;
 
 			s.submit();
@@ -245,13 +246,11 @@
 														<input class="c-chip" type="button"
 															id="size_${shoeSize.size}" name="size"
 															value="${shoeSize.size}" onclick="selectSize(this)">
-														<%-- <input type="hidden" id="hiddenQty_${shoeSize.size}" value="${shoeSize.qty}"> --%>
 													</c:when>
 													<c:otherwise>
 														<input class="c-chip" type="button"
 															id="soldoutSize_${shoeSize.size}" name="soldoutSize"
-															readonly="readonly" value="${shoeSize.size}"
-															onclick="alertSize()">
+															value="${shoeSize.size}" onclick="alertSize()">
 													</c:otherwise>
 												</c:choose>
 											</c:forEach>
