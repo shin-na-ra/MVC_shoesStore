@@ -85,7 +85,7 @@
 		function checkMember() {
 			
 			//정규식
-			let regExpId = /[A-Za-z0-9]{3,}/;
+			let regExpId = /^[A-Za-z][A-Za-z0-9]{2,}$/;
 			let regExpPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,100}$/;
 			
 			let form = document.Member;
