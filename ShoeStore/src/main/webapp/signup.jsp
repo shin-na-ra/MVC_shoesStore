@@ -207,6 +207,7 @@
 				gender: true,
 				email: true,
 				address: true,
+				addressDatail: true
 			};
 			
 			const patternMap = {
@@ -249,7 +250,24 @@
 		}
 		
 		const submitForm = () => {
-			
+			// 필수 항목 중 하나라도 입력되지 않은 경우
+			if (
+				!userId.validity.valid ||
+				!password.validity.valid ||
+				!fullName.validity.valid ||
+				!tel.validity.valid ||
+				!birth.validity.valid ||
+				!gender.validity.valid ||
+				!email.validity.valid ||
+				!address.validity.valid ||
+				!addressDetail.validity.valid
+			) {
+				// 알람 창 띄우기
+				alert('필수 항목을 모두 입력해주세요.');
+			} else {
+				// 회원가입 완료 알람 창 띄우기
+				alert('회원가입이 완료되었습니다.');
+			}
 		}
 	</script>
 </body>
